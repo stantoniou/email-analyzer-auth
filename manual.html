@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Manual – Email Contact Analyzer | Staviox</title>
+  <meta name="description" content="Complete user manual for Email Contact Analyzer. Learn how to scan, search, manage contacts, and get the most out of the extension." />
+  <link rel="icon" type="image/png" href="icons/icon48.png" />
+  <style>
+    /* ── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Tokens ─────────────────────────────────────────────────── */
+    :root {
+      --bg:          #0f0f12;
+      --surface:     #17171d;
+      --card:        #1e1e28;
+      --card-hover:  #252530;
+      --border:      #2a2a38;
+      --faint:       #3a3a4a;
+      --blue:        #0078d4;
+      --blue-lt:     #4dabf7;
+      --blue-glow:   rgba(0,120,212,0.16);
+      --text:        #e8e8f0;
+      --muted:       #888898;
+      --white:       #ffffff;
+      --radius:      12px;
+      --radius-lg:   20px;
+      --ease:        0.2s ease;
+      --font:        'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+
+    a { color: var(--blue-lt); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── Buttons ────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 24px;
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      text-decoration: none !important;
+      transition: all var(--ease);
+      white-space: nowrap;
+      font-family: var(--font);
+    }
+
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover {
+      background: #1483d8;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(0,120,212,0.38);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      background: var(--card);
+      border-color: var(--faint);
+      transform: translateY(-1px);
+    }
+
+    /* ── Nav ────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(15,15,18,0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      text-decoration: none !important;
+    }
+
+    .nav-logo img { width: 30px; height: 30px; border-radius: 7px; }
+    .nav-logo span { color: var(--blue-lt); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--ease);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); text-decoration: none; }
+
+    .nav-cta { display: flex; gap: 10px; }
+
+    /* ── Page hero ──────────────────────────────────────────────── */
+    .page-hero {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 52px 0 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse at center, rgba(0,120,212,0.1) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .page-hero-inner { position: relative; z-index: 1; }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-glow);
+      border: 1px solid rgba(0,120,212,0.3);
+      color: var(--blue-lt);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+
+    .page-hero p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .page-hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .meta-pill svg { opacity: 0.6; }
+
+    /* ── Manual layout ──────────────────────────────────────────── */
+    .manual-wrap {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 62px);
+      align-items: start;
+    }
+
+    /* ── Sidebar / TOC ──────────────────────────────────────────── */
+    .toc-sidebar {
+      position: sticky;
+      top: 62px;
+      height: calc(100vh - 62px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 32px 0;
+      background: var(--surface);
+      scrollbar-width: thin;
+      scrollbar-color: var(--faint) transparent;
+    }
+
+    .toc-sidebar::-webkit-scrollbar { width: 4px; }
+    .toc-sidebar::-webkit-scrollbar-thumb { background: var(--faint); border-radius: 2px; }
+
+    .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      padding: 0 24px;
+      margin-bottom: 14px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 6px 24px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all var(--ease);
+      border-left: 2px solid transparent;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.03);
+      border-left-color: var(--blue);
+    }
+
+    .toc-list a.active {
+      color: var(--blue-lt);
+      border-left-color: var(--blue);
+      background: rgba(0,120,212,0.06);
+    }
+
+    .toc-sep {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 14px 0;
+    }
+
+    /* ── Main content ───────────────────────────────────────────── */
+    .manual-content {
+      padding: 52px 64px 96px;
+      max-width: 800px;
+    }
+
+    /* Sections */
+    .manual-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 82px;
+    }
+
+    .section-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-lt);
+      margin-bottom: 10px;
+      opacity: 0.7;
+    }
+
+    .manual-section > h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .manual-section h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin: 32px 0 10px;
+    }
+
+    .manual-section h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--blue-lt);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 24px 0 8px;
+    }
+
+    .manual-section p {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .manual-section ul, .manual-section ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    .manual-section li {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 6px;
+    }
+
+    .manual-section li strong { color: var(--white); }
+
+    /* Tables */
+    .manual-table-wrap { overflow-x: auto; margin: 18px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead { background: var(--card); }
+
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 10px 14px;
+      color: var(--text);
+      border-bottom: 1px solid rgba(42,42,56,0.6);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.015); }
+
+    table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+
+    /* Code / kbd */
+    code {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      background: var(--card);
+      color: var(--blue-lt);
+      padding: 2px 7px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+    }
+
+    kbd {
+      font-family: var(--font);
+      font-size: 12px;
+      background: var(--card);
+      color: var(--text);
+      padding: 2px 8px;
+      border-radius: 5px;
+      border: 1px solid var(--faint);
+      box-shadow: 0 2px 0 var(--faint);
+      display: inline-block;
+    }
+
+    /* Callout boxes */
+    .callout {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin: 18px 0;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .callout p { margin: 0; font-size: 14px; }
+
+    .callout-tip {
+      background: rgba(0,120,212,0.07);
+      border: 1px solid rgba(0,120,212,0.2);
+      color: var(--text);
+    }
+
+    .callout-warn {
+      background: rgba(234,179,8,0.07);
+      border: 1px solid rgba(234,179,8,0.2);
+      color: var(--text);
+    }
+
+    .callout-warn .callout-icon { color: #fbbf24; }
+    .callout-tip .callout-icon { color: var(--blue-lt); }
+
+    /* Indicator dots */
+    .dot {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .dot-blue { background: #4dabf7; }
+    .dot-orange { background: #f59e0b; }
+    .dot-gray { background: #6b7280; }
+
+    /* Steps list */
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: steps;
+    }
+
+    .steps-list li {
+      counter-increment: steps;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .steps-list li::before {
+      content: counter(steps);
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue-glow);
+      border: 1px solid rgba(0,120,212,0.3);
+      color: var(--blue-lt);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Layout diagram */
+    .layout-diagram {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      overflow-x: auto;
+      margin: 18px 0;
+    }
+
+    .layout-diagram span { color: var(--blue-lt); }
+
+    /* Pricing comparison */
+    .pricing-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .compare-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .compare-card.featured { border-color: var(--blue); }
+
+    .compare-plan {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue-lt);
+      margin-bottom: 6px;
+    }
+
+    .compare-price {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .compare-features {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .compare-features li {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .compare-features li .tick { color: var(--blue-lt); font-weight: 700; }
+    .compare-features li.dim { opacity: 0.4; }
+
+    /* Search mode table */
+    .search-example {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    .search-example .query { color: var(--blue-lt); font-family: monospace; }
+    .search-example .result { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+    /* ── Footer ─────────────────────────────────────────────────── */
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 52px 0 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand-name img { width: 26px; height: 26px; border-radius: 6px; opacity: 0.85; }
+    .footer-tagline { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+
+    .footer-col-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 16px;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color var(--ease);
+    }
+    .footer-links a:hover { color: var(--white); text-decoration: none; }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy { font-size: 12px; color: var(--faint); line-height: 1.7; }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .manual-wrap { grid-template-columns: 1fr; }
+      .toc-sidebar { display: none; }
+      .manual-content { padding: 32px 24px 72px; max-width: 100%; }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .nav-cta .btn-ghost { display: none; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .pricing-compare { grid-template-columns: 1fr; }
+      .page-hero { padding: 36px 0 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="icons/icon128.png" alt="Staviox logo" />
+      STAVI<span>OX</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#features">Products</a></li>
+      <li><a href="manual.html" class="active">User Manual</a></li>
+      <li><a href="Privacy/privacy.html">Privacy</a></li>
+      <li><a href="mailto:support@staviox.com">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="index.html#download" class="btn btn-primary">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Install
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <div class="label">Documentation</div>
+    <h1>User Manual</h1>
+    <p>Everything you need to know about Email Contact Analyzer — from first install to daily use.</p>
+    <div class="page-hero-meta">
+      <span class="meta-pill">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Version 1.0
+      </span>
+      <span class="meta-pill">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Updated May 2026
+      </span>
+      <span class="meta-pill">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        15–20 min read
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MANUAL BODY
+══════════════════════════════════════════════════════════════ -->
+<div class="manual-wrap">
+
+  <!-- ── TOC sidebar ── -->
+  <aside class="toc-sidebar" id="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#overview">1. Overview</a></li>
+      <li><a href="#requirements">2. Requirements</a></li>
+      <li><a href="#installation">3. Installation</a></li>
+      <li><a href="#getting-started">4. Getting Started</a></li>
+      <li><a href="#interface">5. The Interface</a></li>
+      <hr class="toc-sep" />
+      <li><a href="#scanning">6. Scanning Your Emails</a></li>
+      <li><a href="#contacts">7. Browsing Contacts</a></li>
+      <li><a href="#reading">8. Reading Emails</a></li>
+      <li><a href="#searching">9. Searching Emails</a></li>
+      <li><a href="#contact-mgmt">10. Create &amp; Edit Contacts</a></li>
+      <li><a href="#deleting">11. Deleting Emails</a></li>
+      <li><a href="#customizing">12. Customizing the View</a></li>
+      <hr class="toc-sep" />
+      <li><a href="#pricing">13. Free vs Premium</a></li>
+      <li><a href="#troubleshooting">14. Troubleshooting</a></li>
+      <li><a href="#privacy">15. Privacy &amp; Security</a></li>
+    </ul>
+  </aside>
+
+  <!-- ── Content ── -->
+  <main class="manual-content">
+
+    <!-- 1. Overview -->
+    <section class="manual-section" id="overview">
+      <div class="section-number">Section 1</div>
+      <h2>Overview</h2>
+      <p><strong>Email Contact Analyzer</strong> is a browser extension for Chrome and Microsoft Edge that works alongside Microsoft Outlook Web (<code>outlook.office.com</code>). It scans your inbox and sent items, discovers every person you have emailed, and ranks them by email volume — so you always know who your most important contacts are.</p>
+      <p>Beyond discovery, it lets you create and edit Outlook contacts directly from the panel, search across email subjects and bodies, and keep your address book up to date — all without leaving your browser.</p>
+
+      <h3>What it does at a glance</h3>
+      <ul>
+        <li>Scans your inbox and sent items and builds a ranked contact list</li>
+        <li>Shows how many emails you received from and sent to each person</li>
+        <li>Highlights which contacts already exist in your Outlook address book</li>
+        <li>Lets you create or update Outlook contacts with one double-click</li>
+        <li>Provides full-text search across email subjects and bodies</li>
+        <li>Lets you delete individual or bulk emails from within the panel</li>
+        <li>Offers seven color themes to match your preference</li>
+      </ul>
+    </section>
+
+    <!-- 2. Requirements -->
+    <section class="manual-section" id="requirements">
+      <div class="section-number">Section 2</div>
+      <h2>Requirements</h2>
+      <div class="manual-table-wrap">
+        <table>
+          <thead><tr><th>Requirement</th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Browser</strong></td><td>Google Chrome or Microsoft Edge (latest version recommended)</td></tr>
+            <tr><td><strong>Outlook account</strong></td><td>Microsoft 365 or Exchange Online (work or school account)</td></tr>
+            <tr><td><strong>Outlook access</strong></td><td>Must use Outlook Web at <code>outlook.office.com</code> or <code>outlook.office365.com</code></td></tr>
+            <tr><td><strong>Internet connection</strong></td><td>Required — the extension uses Microsoft's cloud API</td></tr>
+            <tr><td><strong>Operating system</strong></td><td>Windows, macOS, or any OS that supports Chrome or Edge</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Note:</strong> Personal Microsoft accounts (outlook.com / hotmail.com / live.com) are <strong>not</strong> supported. The extension requires a Microsoft 365 business or school account.</p>
+      </div>
+    </section>
+
+    <!-- 3. Installation -->
+    <section class="manual-section" id="installation">
+      <div class="section-number">Section 3</div>
+      <h2>Installation</h2>
+      <ol class="steps-list">
+        <li>Open the Chrome Web Store (or Edge Add-ons store) and search for <strong>"Email Contact Analyzer"</strong>.</li>
+        <li>Click <strong>Add to Chrome</strong> (or <strong>Get</strong> in Edge).</li>
+        <li>Confirm the permissions prompt — the extension needs access to Outlook Web to read your emails.</li>
+        <li>The extension icon (an envelope with a magnifying glass) appears in your browser toolbar.</li>
+      </ol>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Tip:</strong> Pin the extension icon to your toolbar for quick access. Click the puzzle-piece icon in the toolbar → find <em>Email Contact Analyzer</em> → click the pin icon.</p>
+      </div>
+    </section>
+
+    <!-- 4. Getting started -->
+    <section class="manual-section" id="getting-started">
+      <div class="section-number">Section 4</div>
+      <h2>Getting Started</h2>
+
+      <h3>Step 1 — Open the analyzer</h3>
+      <p>Click the extension icon in your browser toolbar. A small popup appears. Click <strong>Open Analyzer</strong> to launch the full analyzer window. This opens as a separate resizable window so you can position it alongside your browser.</p>
+
+      <h3>Step 2 — Set your date range</h3>
+      <p>In the <strong>"Emails from"</strong> field at the top of the analyzer, enter the earliest date you want to scan. The format is <code>DD/MM/YYYY</code>. The default is January 1 of the current year. You can type directly or click the calendar icon to pick a date.</p>
+
+      <h3>Step 3 — Sign in and scan</h3>
+      <p>Click <strong>Sign In &amp; Scan Emails</strong>. Your browser will open a Microsoft login page. Sign in with your Microsoft 365 account. After a successful sign-in, you will be redirected back automatically and the scan will begin.</p>
+      <p>The status bar at the bottom of the analyzer shows progress. Scanning may take 15–60 seconds depending on how many emails you have.</p>
+
+      <h3>Step 4 — Explore your contacts</h3>
+      <p>Once the scan completes, the left sidebar fills with your contacts ranked by email volume. Click any contact to see their emails in the right panel.</p>
+    </section>
+
+    <!-- 5. Interface -->
+    <section class="manual-section" id="interface">
+      <div class="section-number">Section 5</div>
+      <h2>The Interface</h2>
+      <p>The analyzer is divided into three main areas:</p>
+
+      <div class="layout-diagram">
+┌────────────────────────────────────────────────────────────┐<br>
+│  <span>HEADER: Search | Date picker | Theme | Sign In button</span>     │<br>
+├──────────────────┬─────────────────────────────────────────┤<br>
+│                  │  <span>EMAIL LIST</span>                             │<br>
+│  <span>CONTACTS</span>        │  (Sorted, filterable, searchable)       │<br>
+│  <span>SIDEBAR</span>         ├─────────────────────────────────────────┤<br>
+│  (Ranked list)   │  <span>READING PANE</span>                          │<br>
+│                  │  (Full email content)                   │<br>
+└──────────────────┴─────────────────────────────────────────┘<br>
+│  <span>STATUS BAR: Contact count, scan progress</span>                  │<br>
+└────────────────────────────────────────────────────────────┘
+      </div>
+
+      <h3>5.1 Header Bar</h3>
+      <div class="manual-table-wrap">
+        <table>
+          <thead><tr><th>Element</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Search box</strong></td><td>Filter contacts by name or email domain in real time</td></tr>
+            <tr><td><strong>Emails from</strong></td><td>Set the start date for the scan</td></tr>
+            <tr><td><strong>Theme icon</strong></td><td>Choose a color theme</td></tr>
+            <tr><td><strong>Sign In &amp; Scan Emails</strong></td><td>Authenticate and start scanning</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>5.2 Contacts Sidebar</h3>
+      <p>Displays every contact discovered, with their name, primary email address, last email date, and a color-coded circle indicator:</p>
+      <ul>
+        <li><span class="dot dot-blue"></span><strong>Blue</strong> — this contact exists in your Outlook address book (one email)</li>
+        <li><span class="dot dot-orange"></span><strong>Orange</strong> — this contact exists in Outlook with multiple email addresses</li>
+        <li><span class="dot dot-gray"></span><strong>Gray</strong> — this contact is not yet in your Outlook address book</li>
+      </ul>
+      <p>Contacts with multiple email addresses show a small arrow (▶). Click the arrow to expand and see each address individually.</p>
+
+      <h4>Sorting controls</h4>
+      <div class="manual-table-wrap">
+        <table>
+          <thead><tr><th>Control</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td><strong>First name</strong></td><td>Sort alphabetically by first name</td></tr>
+            <tr><td><strong>Last name</strong></td><td>Sort alphabetically by last name</td></tr>
+            <tr><td><strong>Count</strong></td><td>Sort by total email volume (most emails first)</td></tr>
+            <tr><td><strong>FL / LF</strong></td><td>Toggle between "First Last" and "Last First" display</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Click <strong>Show All</strong> to see every email across all contacts, or click any contact to filter emails to that person only.</p>
+
+      <h3>5.3 Email List Panel</h3>
+      <p>Shows emails for the selected contact (or all emails if "Show All" is active):</p>
+      <div class="manual-table-wrap">
+        <table>
+          <thead><tr><th>Column</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Checkbox</strong></td><td>Select email for bulk operations</td></tr>
+            <tr><td><strong>Type badge</strong></td><td>Green <strong>FROM</strong> = received; Orange <strong>SENT</strong> = sent by you</td></tr>
+            <tr><td><strong>Name</strong></td><td>Sender (for FROM) or recipient (for SENT)</td></tr>
+            <tr><td><strong>Subject</strong></td><td>Email subject line</td></tr>
+            <tr><td><strong>Date</strong></td><td>Date and time</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Above the email list you'll see statistics for the selected contact, for example: <strong>FROM: 24 · SENT: 6</strong>. Sort emails by clicking <strong>Newest</strong> or <strong>Oldest</strong>. Drag the column borders to resize the Name and Date columns.</p>
+
+      <h3>5.4 Reading Pane</h3>
+      <p>Appears at the bottom of the right panel when you click an email. Shows the full subject, sender, recipients (To/CC), date, an <strong>Open in Outlook</strong> button, a <strong>Delete</strong> button, and the full email body. Close it with the <strong>✕</strong> button in its top-right corner.</p>
+
+      <h3>5.5 Status Bar</h3>
+      <p>Displays a summary after scanning: total contacts found, inbox emails fetched, sent emails fetched, and how many are already in your address book.</p>
+    </section>
+
+    <!-- 6. Scanning -->
+    <section class="manual-section" id="scanning">
+      <div class="section-number">Section 6</div>
+      <h2>Scanning Your Emails</h2>
+
+      <h3>Choosing a date range</h3>
+      <p>The <strong>"Emails from"</strong> date controls how far back the scan goes. A shorter range (e.g., the past 3 months) scans faster and shows recent contacts. A longer range captures more history but may take more time to complete.</p>
+      <p>Enter the date in <code>DD/MM/YYYY</code> format, or click the calendar icon. The calendar validates the date — invalid dates such as February 31 are rejected.</p>
+
+      <h3>Starting a scan</h3>
+      <p>Click <strong>Sign In &amp; Scan Emails</strong>. If you are already signed in from a previous session, the scan begins immediately without a new login prompt. To stop a scan in progress, click the <strong>Stop</strong> button that replaces the scan button while scanning is active.</p>
+
+      <h3>Re-scanning</h3>
+      <p>To refresh your contact list after new emails arrive, click <strong>Sign In &amp; Scan Emails</strong> again. The previous results are replaced with the updated data.</p>
+    </section>
+
+    <!-- 7. Contacts -->
+    <section class="manual-section" id="contacts">
+      <div class="section-number">Section 7</div>
+      <h2>Browsing Contacts</h2>
+
+      <h3>Selecting a contact</h3>
+      <p>Click any contact in the left sidebar. The email list on the right updates to show only that contact's emails. The contact's name and email statistics appear at the top of the email panel.</p>
+
+      <h3>Multi-email contacts</h3>
+      <p>Some contacts appear under more than one email address (e.g., a work address and a personal address). These contacts show an orange circle and a small arrow. Click the arrow to expand and see each address listed separately. Click any individual address to filter emails to just that address.</p>
+
+      <h3>Filtering contacts by name or domain</h3>
+      <p>Type in the <strong>search box</strong> in the header bar to filter the contact list in real time. You can search by contact name (e.g., <code>John</code>) or email domain (e.g., <code>@microsoft.com</code> or just <code>microsoft</code>). Clear the search box to see all contacts again.</p>
+    </section>
+
+    <!-- 8. Reading -->
+    <section class="manual-section" id="reading">
+      <div class="section-number">Section 8</div>
+      <h2>Reading Emails</h2>
+      <p>Click any row in the email list to open that email in the reading pane at the bottom of the window. The reading pane shows the subject, sender and recipients, date and time, and the full email body rendered as HTML when available.</p>
+
+      <h3>Opening in Outlook</h3>
+      <p>Click <strong>Open in Outlook</strong> to jump to that email in your Outlook web tab. This is useful if you want to reply, forward, or take any action the analyzer does not handle directly.</p>
+
+      <h3>Closing the reading pane</h3>
+      <p>Click the <strong>✕</strong> in the top-right corner of the reading pane. The email list expands to fill the space.</p>
+    </section>
+
+    <!-- 9. Searching -->
+    <section class="manual-section" id="searching">
+      <div class="section-number">Section 9</div>
+      <h2>Searching Emails</h2>
+      <p>There are two search areas:</p>
+
+      <h3>9.1 Contact search (header bar)</h3>
+      <p>Filters the <strong>contact list</strong> by name or domain. Results update as you type.</p>
+
+      <h3>9.2 Email search (within the email list)</h3>
+      <p>Searches <strong>email subjects and body content</strong> for the selected contact (or all emails when Show All is active).</p>
+      <ol class="steps-list">
+        <li>Click the search icon above the email list to reveal the search bar.</li>
+        <li>Type your search terms.</li>
+        <li>Subject search runs automatically as you type.</li>
+        <li>Body search runs when you press <kbd>Enter</kbd> or click <strong>Search</strong> (body search is slower because it fetches full email content).</li>
+      </ol>
+
+      <h3>Search modes</h3>
+      <div class="search-example">
+        <div class="query">invoice payment</div>
+        <div class="result">OR mode — finds emails containing "invoice" <strong>or</strong> "payment"</div>
+      </div>
+      <div class="search-example">
+        <div class="query">invoice &amp; payment</div>
+        <div class="result">AND mode — finds emails containing both "invoice" <strong>and</strong> "payment"</div>
+      </div>
+      <p>Matching terms are highlighted in the results.</p>
+    </section>
+
+    <!-- 10. Contact management -->
+    <section class="manual-section" id="contact-mgmt">
+      <div class="section-number">Section 10</div>
+      <h2>Creating &amp; Editing Outlook Contacts</h2>
+      <p>The analyzer integrates directly with your Outlook address book. You can create new contacts or update existing ones without leaving the panel.</p>
+
+      <h3>10.1 Creating a new contact</h3>
+      <p>If a contact has a <span class="dot dot-gray"></span>gray circle (not yet in Outlook), double-click the contact. A dialog opens with the email address pre-filled. Fill in any of the following fields, then click <strong>Create Contact</strong>:</p>
+      <ul>
+        <li>First name and last name</li>
+        <li>Secondary email address (optional)</li>
+        <li>Mobile phone (optional)</li>
+        <li>Home phone (optional)</li>
+        <li>Business phone (optional)</li>
+      </ul>
+      <p>The contact is added to your Outlook address book and the circle turns blue.</p>
+
+      <h3>10.2 Editing an existing contact</h3>
+      <p>If a contact has a <span class="dot dot-blue"></span>blue circle (already in Outlook), double-click the contact. An edit dialog opens showing the current Outlook data. Update any fields and click <strong>Save</strong>. Changes are applied to Outlook immediately.</p>
+
+      <h3>10.3 Adding an email address to an existing contact</h3>
+      <p>For contacts with multiple email addresses (<span class="dot dot-orange"></span>orange circle), you can link a new address to an existing Outlook contact:</p>
+      <ol class="steps-list">
+        <li>Expand the contact by clicking the arrow.</li>
+        <li>Double-click the specific email address you want to add.</li>
+        <li>In the dialog, select <strong>Update Existing Contact</strong>.</li>
+        <li>Search for and select the target contact from your address book.</li>
+        <li>Click <strong>Save</strong>. The email address is added to that contact's record.</li>
+      </ol>
+    </section>
+
+    <!-- 11. Deleting -->
+    <section class="manual-section" id="deleting">
+      <div class="section-number">Section 11</div>
+      <h2>Deleting Emails</h2>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Warning:</strong> Deletion is permanent. Deleted emails cannot be recovered from within the analyzer. Make sure you want to delete before confirming.</p>
+      </div>
+
+      <h3>Deleting a single email</h3>
+      <p>Open an email in the reading pane, then click the <strong>Delete</strong> (trash) button. The email is removed from your mailbox immediately.</p>
+
+      <h3>Bulk deleting emails</h3>
+      <ol class="steps-list">
+        <li>Check the checkbox next to each email you want to delete.</li>
+        <li>Use the checkbox in the column header to select all visible emails at once.</li>
+        <li>A bulk action bar appears showing how many emails are selected.</li>
+        <li>Click <strong>Delete Selected</strong>. Deleted emails disappear from the list.</li>
+      </ol>
+    </section>
+
+    <!-- 12. Customizing -->
+    <section class="manual-section" id="customizing">
+      <div class="section-number">Section 12</div>
+      <h2>Customizing the View</h2>
+
+      <h3>12.1 Themes</h3>
+      <p>Click the <strong>theme icon</strong> in the header bar to open the theme picker. Seven themes are available:</p>
+      <div class="manual-table-wrap">
+        <table>
+          <thead><tr><th>Theme</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Dark</strong></td><td>Dark gray backgrounds, suitable for low-light environments</td></tr>
+            <tr><td><strong>Light</strong></td><td>Clean white and light gray</td></tr>
+            <tr><td><strong>Midnight Blue</strong></td><td>Deep blue tones</td></tr>
+            <tr><td><strong>Forest</strong></td><td>Muted green palette</td></tr>
+            <tr><td><strong>Warm Sepia</strong></td><td>Warm tan and brown tones</td></tr>
+            <tr><td><strong>Crimson</strong></td><td>Bold red accents</td></tr>
+            <tr><td><strong>Windows Colors</strong></td><td>Matches your Windows system accent color</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Your selected theme is saved automatically and remembered the next time you open the analyzer.</p>
+
+      <h3>12.2 Resizing panels</h3>
+      <ul>
+        <li><strong>Sidebar width</strong> — drag the vertical border between the contacts sidebar and the email list.</li>
+        <li><strong>Reading pane height</strong> — drag the horizontal border between the email list and the reading pane.</li>
+      </ul>
+
+      <h3>12.3 Collapsing the sidebar</h3>
+      <p>Click the <strong>‹</strong> button on the right edge of the contacts sidebar to collapse it and give the email list more space. Click again to expand.</p>
+
+      <h3>12.4 Window size and position</h3>
+      <p>The analyzer opens as a separate window. Resize and reposition it as you would any window. Its size and position are remembered for next time.</p>
+    </section>
+
+    <!-- 13. Pricing -->
+    <section class="manual-section" id="pricing">
+      <div class="section-number">Section 13</div>
+      <h2>Free vs Premium</h2>
+
+      <div class="pricing-compare">
+        <div class="compare-card">
+          <div class="compare-plan">Free</div>
+          <div class="compare-price">€0</div>
+          <ul class="compare-features">
+            <li><span class="tick">✓</span> Up to 50 contacts</li>
+            <li><span class="tick">✓</span> Contact ranking &amp; sorting</li>
+            <li><span class="tick">✓</span> Full-text email search</li>
+            <li><span class="tick">✓</span> Reading pane</li>
+            <li><span class="tick">✓</span> Email deletion</li>
+            <li><span class="tick">✓</span> All 7 themes</li>
+            <li><span class="tick">✓</span> Outlook contact integration</li>
+            <li class="dim"><span class="tick">–</span> Pro features</li>
+          </ul>
+        </div>
+
+        <div class="compare-card featured">
+          <div class="compare-plan">Premium</div>
+          <div class="compare-price" style="font-size:22px;padding-top:6px">Coming soon</div>
+          <ul class="compare-features" style="margin-top:14px">
+            <li><span class="tick">✓</span> Everything in Free</li>
+            <li><span class="tick">✓</span> Unlimited contacts</li>
+            <li><span class="tick">✓</span> Export to CSV / vCard</li>
+            <li><span class="tick">✓</span> Advanced analytics</li>
+            <li><span class="tick">✓</span> Priority support</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>When you reach the 50-contact limit, a bar appears at the top of the contacts panel showing your usage (e.g., <strong>47 / 50 contacts</strong>) with an <strong>Upgrade</strong> button that links to the pricing page.</p>
+    </section>
+
+    <!-- 14. Troubleshooting -->
+    <section class="manual-section" id="troubleshooting">
+      <div class="section-number">Section 14</div>
+      <h2>Troubleshooting</h2>
+
+      <h3>The scan is slow or seems stuck</h3>
+      <p>Large mailboxes with thousands of emails take longer to process. The status bar shows progress. You can stop the scan at any time by clicking <strong>Stop</strong> and use the results collected so far. To scan fewer emails, shorten the date range (use a more recent "Emails from" date).</p>
+
+      <h3>I see "No emails found" for a contact</h3>
+      <p>The contact may have exchanged emails outside the selected date range. Try extending the start date further back and re-scanning.</p>
+
+      <h3>A contact's name shows as their email address</h3>
+      <p>The analyzer extracts names from email headers. If the sender did not configure a display name in their email client, only the email address is available. You can set the correct name by double-clicking the contact and filling in the name fields to create or update their Outlook contact record.</p>
+
+      <h3>The Microsoft sign-in window did not close automatically</h3>
+      <p>Close the sign-in tab manually and return to the analyzer. If the analyzer does not continue, click <strong>Sign In &amp; Scan Emails</strong> again.</p>
+
+      <h3>I cannot see a contact I know I have emailed</h3>
+      <p>Check that:</p>
+      <ul>
+        <li>The email date falls within your selected scan range.</li>
+        <li>You have not applied a contact search filter (clear the header search box).</li>
+        <li>On the free plan, the contact may not be in the top 50 by email volume. Upgrade to Premium to see all contacts.</li>
+      </ul>
+
+      <h3>The extension icon is missing from my toolbar</h3>
+      <p>Click the puzzle-piece icon in the Chrome/Edge toolbar, find <strong>Email Contact Analyzer</strong>, and click the pin icon to pin it to the toolbar.</p>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p>Still stuck? Email us at <a href="mailto:support@staviox.com">support@staviox.com</a> and we'll help you out.</p>
+      </div>
+    </section>
+
+    <!-- 15. Privacy -->
+    <section class="manual-section" id="privacy">
+      <div class="section-number">Section 15</div>
+      <h2>Privacy &amp; Security</h2>
+
+      <ul>
+        <li><strong>Your email data stays private.</strong> The extension reads your emails directly from Microsoft's servers using your own Microsoft 365 account. No email content is stored on any third-party server.</li>
+        <li><strong>Authentication uses OAuth 2.0.</strong> You sign in directly with Microsoft. The extension never sees or stores your password.</li>
+        <li><strong>Email rendering is sandboxed.</strong> Email bodies are displayed inside a sandboxed frame that blocks scripts and external resources, protecting you from potentially malicious email content.</li>
+        <li><strong>No tracking.</strong> The extension does not collect analytics or usage data from your emails.</li>
+      </ul>
+
+      <h3>Required Microsoft Graph permissions</h3>
+      <div class="manual-table-wrap">
+        <table>
+          <thead><tr><th>Permission</th><th>Why it's needed</th></tr></thead>
+          <tbody>
+            <tr><td><code>Mail.Read</code></td><td>To scan your inbox and sent items</td></tr>
+            <tr><td><code>User.Read</code></td><td>To identify your account and mailbox</td></tr>
+            <tr><td><code>Contacts.Read</code></td><td>To read your Outlook address book</td></tr>
+            <tr><td><code>Contacts.ReadWrite</code></td><td>To create and update Outlook contacts</td></tr>
+            <tr><td><code>offline_access</code></td><td>To maintain your session without repeated sign-ins</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:18px">
+        <a href="Privacy/privacy.html" class="btn btn-ghost">Read Full Privacy Policy →</a>
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">
+          <img src="icons/icon128.png" alt="" />
+          STAVIOX
+        </div>
+        <div class="footer-tagline">Premium Productivity Solutions</div>
+        <p style="font-size:13px;color:var(--faint);line-height:1.6;max-width:320px">
+          Email Contact Analyzer helps you understand your inbox by ranking contacts, surfacing conversation history, and making search effortless — all privately, on your machine.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links">
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#screenshots">Screenshots</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="manual.html">User Manual</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="Privacy/privacy.html">Privacy Policy</a></li>
+          <li><a href="mailto:support@staviox.com">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        © 2026 Staviox. Operated by Integrationhub Consulting LTD. · Nicosia, Cyprus
+      </div>
+      <div style="display:flex;gap:18px">
+        <a href="Privacy/privacy.html" style="font-size:12px;color:var(--faint)">Privacy Policy</a>
+        <a href="mailto:support@staviox.com" style="font-size:12px;color:var(--faint)">support@staviox.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Highlight active TOC link on scroll
+  const sections = document.querySelectorAll('.manual-section');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(link => link.classList.remove('active'));
+        const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
