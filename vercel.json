@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "email-analyzer-auth",
+  "name": "staviox",
   "builds": [
     {
       "src": "**/*",
@@ -9,12 +9,32 @@
   ],
   "routes": [
     {
+      "src": "/email-contact-analyzer/upgrade",
+      "dest": "/email-contact-analyzer/upgrade/index.html"
+    },
+    {
+      "src": "/email-contact-analyzer",
+      "dest": "/email-contact-analyzer/index.html"
+    },
+    {
       "src": "/auth-callback",
       "dest": "/auth-callback.html"
     },
     {
       "src": "/privacy",
       "dest": "/privacy.html"
+    },
+    {
+      "src": "/manual",
+      "dest": "/manual.html"
+    },
+    {
+      "src": "/success",
+      "dest": "/success.html"
+    },
+    {
+      "src": "/cancel",
+      "dest": "/cancel.html"
     },
     {
       "src": "/auth-callback.html",
