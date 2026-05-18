@@ -38,6 +38,7 @@ module.exports = async (req, res) => {
       line_items: [{ price: priceId, quantity: 1 }],
       allow_promotion_codes: true,
       tax_id_collection: { enabled: true },
+      managed_payments: { enabled: true },
       metadata: { product, email: email || '' },
       success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cancel`,
