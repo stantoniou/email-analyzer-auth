@@ -35,8 +35,6 @@ module.exports = async (req, res) => {
       cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cancel`,
     };
 
-    if (email) sessionParams.customer_email = email;
-
     const session = await stripe.checkout.sessions.create(sessionParams);
     res.status(200).json({ url: session.url });
 
