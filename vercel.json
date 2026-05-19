@@ -2,6 +2,13 @@
   "version": 2,
   "builds": [
     {
+      "src": "api/webhook.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["api/webhook.js"]
+      }
+    },
+    {
       "src": "api/*.js",
       "use": "@vercel/node"
     },
@@ -29,10 +36,7 @@
     },
     {
       "src": "/api/webhook",
-      "dest": "/api/webhook.js",
-      "headers": {
-        "x-vercel-skip-body-parse": "1"
-      }
+      "dest": "/api/webhook.js"
     },
     {
       "src": "/api/license",
