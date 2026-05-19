@@ -6,7 +6,16 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_KEY
 );
 
-// Required: tell Vercel not to parse the body so we can verify Stripe signature
+// Collect raw body from request stream
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on('data', (chunk) => chunks.push(chunk));
+    req.on('end', () => resolve(Buffer.concat(chunks)));
+    req.on('error', reject);
+  });
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -16,8 +25,9 @@ module.exports = async (req, res) => {
   let event;
 
   try {
+    const rawBody = await getRawBody(req);
     event = stripe.webhooks.constructEvent(
-      req.body,
+      rawBody,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
@@ -71,11 +81,4 @@ module.exports = async (req, res) => {
   }
 
   res.json({ received: true });
-};
-
-// Required config for Stripe webhook signature verification
-module.exports.config = {
-  api: {
-    bodyParser: false,
-  },
 };
