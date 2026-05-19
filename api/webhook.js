@@ -6,16 +6,6 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_KEY
 );
 
-// Collect raw body from request stream
-function getRawBody(req) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    req.on('data', (chunk) => chunks.push(chunk));
-    req.on('end', () => resolve(Buffer.concat(chunks)));
-    req.on('error', reject);
-  });
-}
-
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -25,7 +15,21 @@ module.exports = async (req, res) => {
   let event;
 
   try {
-    const rawBody = await getRawBody(req);
+    let rawBody;
+    if (typeof req.body === 'string') {
+      rawBody = req.body;
+    } else if (Buffer.isBuffer(req.body)) {
+      rawBody = req.body;
+    } else {
+      // Body was auto-parsed as object — read raw from stream
+      rawBody = await new Promise((resolve, reject) => {
+        let data = '';
+        req.on('data', chunk => { data += chunk; });
+        req.on('end', () => resolve(data));
+        req.on('error', reject);
+      });
+    }
+
     event = stripe.webhooks.constructEvent(
       rawBody,
       sig,
@@ -38,7 +42,6 @@ module.exports = async (req, res) => {
 
   const sub = event.data.object;
 
-  // Handle subscription events
   if ([
     'customer.subscription.created',
     'customer.subscription.updated',
@@ -53,12 +56,11 @@ module.exports = async (req, res) => {
       return res.json({ received: true });
     }
 
-    // Determine plan from lookup key
-    const lookupKey = sub.items?.data?.[0]?.price?.lookup_key || '';
-    const plan = lookupKey.includes('annual') ? 'annual' : 'monthly';
+    // Determine plan from price interval (not lookup_key)
+    const interval = sub.items?.data?.[0]?.price?.recurring?.interval || 'month';
+    const plan = interval === 'year' ? 'annual' : 'monthly';
 
-    // Map Stripe status to our status
-    const status = sub.status; // active, past_due, canceled, etc.
+    const status = sub.status;
 
     const { error } = await supabase.from('licenses').upsert({
       email: email.toLowerCase(),
