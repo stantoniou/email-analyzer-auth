@@ -29,7 +29,10 @@
     },
     {
       "src": "/api/webhook",
-      "dest": "/api/webhook.js"
+      "dest": "/api/webhook.js",
+      "headers": {
+        "x-vercel-skip-body-parse": "1"
+      }
     },
     {
       "src": "/api/license",
