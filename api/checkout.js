@@ -1,5 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2026-03-25.preview',
+  apiVersion: '2025-01-27.acacia',
 });
 
 const PRICE_MAP = {
@@ -29,7 +29,9 @@ module.exports = async (req, res) => {
       mode: 'subscription',
       line_items: [{ price: priceId, quantity: 1 }],
       allow_promotion_codes: true,
-      managed_payments: { enabled: true },
+      automatic_tax: { enabled: true },
+      tax_id_collection: { enabled: true },
+      customer_email: email || undefined,
       metadata: { product, email: email || '' },
       success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cancel`,
