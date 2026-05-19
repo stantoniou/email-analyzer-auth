@@ -11,36 +11,19 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const sig = req.headers['stripe-signature'];
-  let event;
-
-  try {
-    let rawBody;
-    if (typeof req.body === 'string') {
-      rawBody = req.body;
-    } else if (Buffer.isBuffer(req.body)) {
-      rawBody = req.body;
-    } else {
-      // Body was auto-parsed as object — read raw from stream
-      rawBody = await new Promise((resolve, reject) => {
-        let data = '';
-        req.on('data', chunk => { data += chunk; });
-        req.on('end', () => resolve(data));
-        req.on('error', reject);
-      });
-    }
-
-    event = stripe.webhooks.constructEvent(
-      rawBody,
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET
-    );
-  } catch (err) {
-    console.error('Webhook signature error:', err.message);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+  // Verify shared secret instead of Stripe signature (Vercel parses body before we can verify)
+  const secret = req.query.secret || req.headers['x-webhook-secret'];
+  if (secret !== process.env.WEBHOOK_SECRET) {
+    console.error('Invalid webhook secret');
+    return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const sub = event.data.object;
+  const event = req.body;
+  const sub = event.data?.object;
+
+  if (!sub) {
+    return res.status(400).json({ error: 'Invalid event' });
+  }
 
   if ([
     'customer.subscription.created',
@@ -56,7 +39,7 @@ module.exports = async (req, res) => {
       return res.json({ received: true });
     }
 
-    // Determine plan from price interval (not lookup_key)
+    // Determine plan from price interval
     const interval = sub.items?.data?.[0]?.price?.recurring?.interval || 'month';
     const plan = interval === 'year' ? 'annual' : 'monthly';
 
