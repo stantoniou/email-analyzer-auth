@@ -38,7 +38,11 @@ module.exports = async (req, res) => {
       return res.status(200).json({ isPro: false, plan: null });
     }
 
-    const isPro = data.status === 'active';
+    // Active subscription OR canceled but still within paid period
+    const isPro = data.status === 'active' ||
+      (data.status === 'canceled' &&
+       data.current_period_end &&
+       new Date(data.current_period_end) > new Date());
 
     // Cache for 1 hour on CDN edge
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
