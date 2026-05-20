@@ -11,7 +11,6 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Verify shared secret instead of Stripe signature (Vercel parses body before we can verify)
   const secret = req.query.secret || req.headers['x-webhook-secret'];
   if (secret !== process.env.WEBHOOK_SECRET) {
     console.error('Invalid webhook secret');
@@ -39,11 +38,14 @@ module.exports = async (req, res) => {
       return res.json({ received: true });
     }
 
-    // Determine plan from price interval
     const interval = sub.items?.data?.[0]?.price?.recurring?.interval || 'month';
     const plan = interval === 'year' ? 'annual' : 'monthly';
-
     const status = sub.status;
+
+    // Safe date conversion
+    const periodEnd = sub.current_period_end
+      ? new Date(sub.current_period_end * 1000).toISOString()
+      : null;
 
     const { error } = await supabase.from('licenses').upsert({
       email: email.toLowerCase(),
@@ -52,7 +54,7 @@ module.exports = async (req, res) => {
       status,
       stripe_customer_id: sub.customer,
       stripe_subscription_id: sub.id,
-      current_period_end: new Date(sub.current_period_end * 1000).toISOString(),
+      current_period_end: periodEnd,
     }, {
       onConflict: 'email,product_id'
     });
