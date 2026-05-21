@@ -1,13 +1,55 @@
 {
   "version": 2,
-  "name": "email-analyzer-auth",
   "builds": [
     {
-      "src": "**/*",
+      "src": "api/webhook.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["api/webhook.js"]
+      }
+    },
+    {
+      "src": "api/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "**/*.json",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "icons/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "Screenshots/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
+    {
+      "src": "/api/checkout",
+      "dest": "/api/checkout.js"
+    },
+    {
+      "src": "/api/webhook",
+      "dest": "/api/webhook.js"
+    },
+    {
+      "src": "/api/license",
+      "dest": "/api/license.js"
+    },
+    {
+      "src": "/email-contact-analyzer/upgrade",
+      "dest": "/email-contact-analyzer/upgrade/index.html"
+    },
+    {
+      "src": "/email-contact-analyzer",
+      "dest": "/email-contact-analyzer/index.html"
+    },
     {
       "src": "/auth-callback",
       "dest": "/auth-callback.html"
@@ -15,6 +57,18 @@
     {
       "src": "/privacy",
       "dest": "/privacy.html"
+    },
+    {
+      "src": "/manual",
+      "dest": "/manual.html"
+    },
+    {
+      "src": "/success",
+      "dest": "/success.html"
+    },
+    {
+      "src": "/cancel",
+      "dest": "/cancel.html"
     },
     {
       "src": "/auth-callback.html",
