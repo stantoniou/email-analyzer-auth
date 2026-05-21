@@ -24,6 +24,13 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'Invalid event' });
   }
 
+  // Ignore events older than 24 hours to prevent stale retries overwriting current state
+  const eventAge = Date.now() - (event.created * 1000);
+  if (eventAge > 24 * 60 * 60 * 1000) {
+    console.log('Ignoring stale event:', event.id, 'age:', Math.round(eventAge / 3600000), 'hours');
+    return res.json({ received: true });
+  }
+
   if ([
     'customer.subscription.created',
     'customer.subscription.updated',
