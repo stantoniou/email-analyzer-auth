@@ -4,36 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy – Email Contact Analyzer | Staviox</title>
+  <link rel="icon" type="image/png" href="icons/icon48.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
   <style>
-    /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --brand:       #2563eb;
-      --brand-light: #eff6ff;
-      --text:        #1e293b;
-      --muted:       #64748b;
-      --border:      #e2e8f0;
-      --bg:          #ffffff;
-      --surface:     #f8fafc;
-      --badge-bg:    #dcfce7;
-      --badge-text:  #166534;
-      --radius:      10px;
-      --max-w:       800px;
+      --bg:           #0e1014;
+      --surface:      #15181f;
+      --card:         #1a1d24;
+      --border:       rgba(255,255,255,0.08);
+      --border-solid: #2a2a2a;
+      --accent:       #7dcaa9;
+      --accent-lt:    #a3d9bf;
+      --accent-glow:  rgba(125,202,169,0.12);
+      --text:         #e8e8f0;
+      --muted:        #888888;
+      --muted-2:      #5a5a6a;
+      --white:        #ffffff;
+      --badge-bg:     rgba(125,202,169,0.15);
+      --badge-text:   #7dcaa9;
+      --radius:       10px;
+      --max-w:        800px;
+      --ease:         0.2s ease;
+      --font:         'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: var(--font);
       font-size: 16px;
       line-height: 1.75;
       color: var(--text);
       background: var(--bg);
     }
 
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--accent-lt); text-decoration: underline; }
+
     /* ── Header ── */
     header {
-      background: var(--brand);
-      color: #fff;
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border-bottom: 1px solid rgba(64,110,90,0.35);
+      color: var(--white);
       padding: 52px 24px 48px;
       text-align: center;
     }
@@ -43,7 +56,9 @@
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      background: rgba(255,255,255,.18);
+      background: rgba(125,202,169,0.15);
+      border: 1px solid rgba(125,202,169,0.3);
+      color: var(--accent);
       padding: 5px 14px;
       border-radius: 20px;
       margin-bottom: 20px;
@@ -61,7 +76,7 @@
 
     /* ── Privacy badge bar ── */
     .badge-bar {
-      background: var(--surface);
+      background: var(--card);
       border-bottom: 1px solid var(--border);
       padding: 18px 24px;
       display: flex;
@@ -91,7 +106,7 @@
 
     /* ── Table of Contents ── */
     .toc {
-      background: var(--brand-light);
+      background: var(--accent-glow);
       border: 1px solid #bfdbfe;
       border-radius: var(--radius);
       padding: 24px 28px;
@@ -102,13 +117,13 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .1em;
-      color: var(--brand);
+      color: var(--accent);
       margin-bottom: 14px;
     }
     .toc ol { padding-left: 20px; }
     .toc li { margin-bottom: 4px; }
     .toc a {
-      color: var(--brand);
+      color: var(--accent);
       text-decoration: none;
       font-size: 14.5px;
     }
@@ -126,7 +141,7 @@
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--brand);
+      color: var(--accent);
       margin-bottom: 8px;
     }
 
@@ -141,7 +156,7 @@
     }
 
     section p {
-      color: #334155;
+      color: var(--text);
       margin-bottom: 14px;
     }
     section p:last-child { margin-bottom: 0; }
@@ -152,11 +167,11 @@
       border-collapse: collapse;
       border-radius: var(--radius);
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-solid);
       margin-top: 20px;
       font-size: 14.5px;
     }
-    .data-table thead { background: var(--surface); }
+    .data-table thead { background: var(--card); }
     .data-table th {
       text-align: left;
       padding: 12px 16px;
@@ -164,17 +179,17 @@
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: .06em;
-      color: var(--muted);
+      color: var(--text);
       border-bottom: 1px solid var(--border);
     }
     .data-table td {
       padding: 13px 16px;
       border-bottom: 1px solid var(--border);
       vertical-align: top;
-      color: #334155;
+      color: var(--text);
     }
     .data-table tr:last-child td { border-bottom: none; }
-    .data-table tr:hover td { background: #f1f5f9; }
+    .data-table tr:hover td { background: var(--card); }
     .data-table .cat {
       font-weight: 600;
       color: var(--text);
@@ -197,20 +212,20 @@
     /* ── Callout boxes ── */
     .callout {
       display: flex;
-      gap: 14px;
+      gap: 16px;
       align-items: flex-start;
       border-radius: var(--radius);
-      padding: 18px 20px;
+      padding: 20px 22px;
       margin-top: 20px;
       font-size: 14.5px;
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border: 1px solid rgba(64,110,90,0.35);
     }
-    .callout.green  { background: #f0fdf4; border: 1px solid #bbf7d0; }
-    .callout.blue   { background: var(--brand-light); border: 1px solid #bfdbfe; }
-    .callout.amber  { background: #fffbeb; border: 1px solid #fde68a; }
-    .callout.purple { background: #faf5ff; border: 1px solid #e9d5ff; }
-    .callout-icon   { font-size: 20px; flex-shrink: 0; line-height: 1.4; }
-    .callout-body   { color: #1e293b; line-height: 1.6; }
-    .callout-body strong { display: block; margin-bottom: 4px; }
+    .callout.green, .callout.blue, .callout.amber, .callout.purple { background: linear-gradient(rgb(26,29,36) 0%, #031415 100%); border: 1px solid rgba(64,110,90,0.35); }
+    .callout-icon-wrap { width: 36px; height: 36px; border-radius: 8px; background: rgba(125,202,169,0.15); border: 1px solid rgba(125,202,169,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .callout-icon-wrap i { font-size: 18px; color: #7dcaa9; }
+    .callout-body { color: var(--text); line-height: 1.6; }
+    .callout-body strong { display: block; margin-bottom: 4px; color: var(--white); }
 
     /* ── Rights grid ── */
     .rights-grid {
@@ -220,82 +235,41 @@
       margin-top: 20px;
     }
     .right-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border: 1px solid rgba(64,110,90,0.35);
       border-radius: var(--radius);
-      padding: 16px 18px;
+      padding: 20px 18px;
+      display: flex; flex-direction: column; gap: 12px;
     }
-    .right-card .icon { font-size: 22px; margin-bottom: 8px; }
-    .right-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
-    .right-card p  { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.5; }
+    .right-card .icon-wrap { width: 36px; height: 36px; border-radius: 8px; background: rgba(125,202,169,0.15); border: 1px solid rgba(125,202,169,0.3); display: flex; align-items: center; justify-content: center; }
+    .right-card .icon-wrap i { font-size: 18px; color: #7dcaa9; }
+    .right-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--white); }
+    .right-card p  { font-size: 13.5px; color: var(--text); margin: 0; line-height: 1.5; }
 
     /* ── Bullet list (padlock style) ── */
-    .security-list {
+    .security-list, .check-list, .globe-list {
       list-style: none;
       margin-top: 16px;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    .security-list li {
+    .security-list li, .check-list li, .globe-list li {
       display: flex;
       align-items: flex-start;
       gap: 10px;
       font-size: 14.5px;
-      color: #334155;
+      color: var(--text);
     }
-    .security-list li::before {
-      content: "🔒";
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    /* ── Check list ── */
-    .check-list {
-      list-style: none;
-      margin-top: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .check-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14.5px;
-      color: #334155;
-    }
-    .check-list li::before {
-      content: "✅";
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    /* ── Globe list ── */
-    .globe-list {
-      list-style: none;
-      margin-top: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .globe-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14.5px;
-      color: #334155;
-    }
-    .globe-list li::before {
-      content: "🌍";
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    .security-list li::before { content: none; }
+    .check-list li::before { content: none; }
+    .globe-list li::before { content: none; }
+    .list-icon { color: #7dcaa9; font-size: 16px; margin-top: 2px; flex-shrink: 0; }
 
     /* ── Third-party card ── */
     .third-party-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--card);
+      border: 1px solid var(--border-solid);
       border-radius: var(--radius);
       padding: 20px 22px;
       margin-top: 16px;
@@ -303,12 +277,12 @@
     .third-party-card h3 {
       font-size: 16px;
       font-weight: 700;
-      color: var(--brand);
+      color: var(--accent);
       margin-bottom: 6px;
     }
     .third-party-card p {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text);
       margin: 0;
     }
 
@@ -320,19 +294,19 @@
       margin-top: 20px;
     }
     .retention-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--card);
+      border: 1px solid var(--border-solid);
       border-radius: var(--radius);
       padding: 16px 18px;
     }
     .retention-card .icon { font-size: 22px; margin-bottom: 8px; }
     .retention-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
-    .retention-card p  { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.5; }
+    .retention-card p  { font-size: 13.5px; color: var(--text); margin: 0; line-height: 1.5; }
 
     /* ── Contact section ── */
     .contact-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--card);
+      border: 1px solid var(--border-solid);
       border-radius: var(--radius);
       padding: 28px 30px;
       margin-top: 20px;
@@ -348,27 +322,27 @@
       align-items: center;
       gap: 10px;
       font-size: 14.5px;
-      color: #334155;
+      color: var(--text);
       margin-bottom: 10px;
     }
     .contact-row:last-child { margin-bottom: 0; }
     .contact-row .label {
       font-weight: 600;
-      color: var(--muted);
+      color: var(--text);
       width: 110px;
       flex-shrink: 0;
     }
-    .contact-row a { color: var(--brand); text-decoration: none; }
+    .contact-row a { color: var(--accent); text-decoration: none; }
     .contact-row a:hover { text-decoration: underline; }
 
     /* ── Footer ── */
     footer {
-      background: var(--surface);
+      background: var(--card);
       border-top: 1px solid var(--border);
       text-align: center;
       padding: 32px 24px;
       font-size: 13.5px;
-      color: var(--muted);
+      color: var(--text);
     }
     footer strong { color: var(--text); }
     footer .updated {
@@ -393,10 +367,40 @@
 <body>
 
 <!-- ════════════════════════════════════════════ HEADER -->
+<style>
+  .site-nav { position: sticky; top: 0; z-index: 200; background: rgba(14,16,20,0.88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid #2a2a2a; }
+  .site-nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 28px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .site-nav-logo { text-decoration: none; display: flex; align-items: center; }
+  .site-nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .site-nav-links a { font-size: 14px; font-weight: 500; color: #888888; text-decoration: none; transition: color 0.2s; font-family: 'Geist', -apple-system, sans-serif; }
+  .site-nav-links a:hover { color: #7dcaa9; }
+  .site-nav-cta { background: #7dcaa9; color: #0e1014; padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; font-family: 'Geist', -apple-system, sans-serif; transition: background 0.2s; }
+  .site-nav-cta:hover { background: #a3d9bf; }
+</style>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="/" class="site-nav-logo">
+      <svg height="28" viewBox="0 0 300 52" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="44" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="48" font-weight="700" letter-spacing="-2" fill="#ffffff">STAV<tspan fill="#7dcaa9">IOX</tspan></text>
+      </svg>
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="/#products">Products</a></li>
+      <li><a href="/manual.html">User Manual</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="mailto:support@staviox.com">Contact</a></li>
+    </ul>
+    <a href="https://chromewebstore.google.com/detail/email-contact-analyzer/lhejammcpjlgjcfedoihddkhookincpg" class="site-nav-cta" target="_blank">Install Free →</a>
+  </div>
+</nav>
+
 <header>
-  <div class="logo">Staviox · Privacy Policy</div>
-  <h1>Email Contact Analyzer</h1>
-  <p>Privacy Policy &amp; Data Practices — Integrationhub Consulting CY LTD</p>
+  <div style="text-align:center;">
+    <div class="logo">Staviox · Privacy Policy</div>
+    <h1>Email Contact Analyzer</h1>
+    <p>Privacy Policy &amp; Data Practices — Integration Hub Consulting CY LTD</p>
+  </div>
 </header>
 
 <!-- ════════════════════════════════════════════ BADGE BAR -->
@@ -455,7 +459,7 @@
     <p>This Privacy Policy describes how <strong>Staviox</strong> ("we", "us", or "our"), a brand operated by <strong>Integrationhub Consulting CY LTD</strong> (a company registered in Nicosia, Cyprus), handles information in connection with the <strong>Email Contact Analyzer</strong> browser extension ("the Extension").</p>
     <p>This policy applies to all users of the Extension worldwide. By installing or using the Extension you acknowledge that you have read and understood this policy.</p>
     <div class="callout green">
-      <span class="callout-icon">🛡️</span>
+      <div class="callout-icon-wrap"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>Privacy-first by design</strong>
         The Email Contact Analyzer processes all data exclusively on your device. No personal information is collected by Staviox, stored on our servers, or shared with any third party other than Microsoft's own services, which you authorise directly via OAuth consent.
@@ -507,7 +511,7 @@
     </table>
 
     <div class="callout blue">
-      <span class="callout-icon">ℹ️</span>
+      <div class="callout-icon-wrap"><i class="ti ti-info-circle" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>No account creation required</strong>
         We do not ask you to create an account, provide an email address to us, or submit any personal information to Staviox. The Extension operates solely through your existing Microsoft account credentials managed by Microsoft.
@@ -521,14 +525,14 @@
     <h2>How We Use Your Data</h2>
     <p>All data is used exclusively to provide the features of the Extension. Specifically:</p>
     <ul class="check-list">
-      <li>To display your contacts ranked by email communication volume.</li>
-      <li>To power search functionality across email subjects and body previews.</li>
-      <li>To generate email pattern analytics visible only to you within the Extension.</li>
-      <li>To retain your display preferences (theme, window position, sort order) between browser sessions.</li>
-      <li>To maintain an authenticated session with the Microsoft Graph API so the Extension can retrieve your email data.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>To display your contacts ranked by email communication volume.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>To power search functionality across email subjects and body previews.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>To generate email pattern analytics visible only to you within the Extension.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>To retain your display preferences (theme, window position, sort order) between browser sessions.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>To maintain an authenticated session with the Microsoft Graph API so the Extension can retrieve your email data.</li>
     </ul>
     <div class="callout green">
-      <span class="callout-icon">✅</span>
+      <div class="callout-icon-wrap"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>100% client-side processing</strong>
         Every computation — contact ranking, search indexing, analytics — happens inside your browser. Staviox never receives, processes, or stores any of this information.
@@ -564,13 +568,13 @@
     </table>
     <p style="margin-top:16px;">We do <strong>not</strong> use any of the following:</p>
     <ul class="security-list">
-      <li>Cloud storage or remote databases of any kind</li>
-      <li>External backend servers operated by Staviox</li>
-      <li>Third-party analytics platforms or data brokers</li>
-      <li>Advertising networks or tracking cookies</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Cloud storage or remote databases of any kind</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>External backend servers operated by Staviox</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Third-party analytics platforms or data brokers</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Advertising networks or tracking cookies</li>
     </ul>
     <div class="callout amber">
-      <span class="callout-icon">⚠️</span>
+      <div class="callout-icon-wrap"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>Removing all stored data</strong>
         Uninstalling the Extension removes all locally stored data. You may also clear all Extension data at any time via your browser's settings by clearing local and session storage for the Extension's origin.
@@ -584,11 +588,11 @@
     <h2>Data Sharing &amp; Disclosure</h2>
     <p>We do <strong>not</strong> share, sell, rent, license, or otherwise transfer your data to any third parties. Specifically:</p>
     <ul class="security-list">
-      <li>We do not sell your data to advertisers or data brokers.</li>
-      <li>We do not share your data with business partners or affiliates.</li>
-      <li>We do not disclose your data for marketing purposes.</li>
-      <li>We do not collect or transmit usage analytics about how you use the Extension.</li>
-      <li>We do not use advertising networks or any external tracking services.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not sell your data to advertisers or data brokers.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not share your data with business partners or affiliates.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not disclose your data for marketing purposes.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not collect or transmit usage analytics about how you use the Extension.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not use advertising networks or any external tracking services.</li>
     </ul>
     <p>The only external communication the Extension makes is with <strong>Microsoft's services</strong> (Microsoft Graph API and Microsoft Azure AD) to fetch your own email data using an OAuth token you explicitly grant. This communication flows directly between your browser and Microsoft — Staviox is not an intermediary in this data flow.</p>
     <p>We may disclose information only if required to do so by applicable law, court order, or governmental authority, and only to the minimum extent legally required.</p>
@@ -601,32 +605,32 @@
     <p>You have full control over your data at all times. The following controls are available to you:</p>
     <div class="rights-grid">
       <div class="right-card">
-        <div class="icon">📅</div>
+        <div class="icon-wrap"><i class="ti ti-calendar" aria-hidden="true"></i></div>
         <h3>Scope Control</h3>
         <p>Choose which emails are scanned using the date range selection feature within the Extension.</p>
       </div>
       <div class="right-card">
-        <div class="icon">🗑️</div>
+        <div class="icon-wrap"><i class="ti ti-trash" aria-hidden="true"></i></div>
         <h3>Right to Erasure</h3>
         <p>Uninstall the Extension at any time to permanently delete all locally stored data from your device.</p>
       </div>
       <div class="right-card">
-        <div class="icon">🔑</div>
+        <div class="icon-wrap"><i class="ti ti-key" aria-hidden="true"></i></div>
         <h3>Revoke OAuth Access</h3>
         <p>Revoke the Extension's access to your Outlook account at any time via your Microsoft account settings.</p>
       </div>
       <div class="right-card">
-        <div class="icon">🧹</div>
+        <div class="icon-wrap"><i class="ti ti-eraser" aria-hidden="true"></i></div>
         <h3>Clear Browser Data</h3>
         <p>Clear all Extension data by clearing your browser's stored data for the Extension's origin via browser settings.</p>
       </div>
       <div class="right-card">
-        <div class="icon">👁️</div>
+        <div class="icon-wrap"><i class="ti ti-eye" aria-hidden="true"></i></div>
         <h3>Right to Access</h3>
         <p>All data held by the Extension is visible directly within the Extension's interface at all times.</p>
       </div>
       <div class="right-card">
-        <div class="icon">🚫</div>
+        <div class="icon-wrap"><i class="ti ti-ban" aria-hidden="true"></i></div>
         <h3>No Account Required</h3>
         <p>No registration, email address, or personal information needs to be provided to Staviox to use the Extension.</p>
       </div>
@@ -639,15 +643,15 @@
     <h2>Security Measures</h2>
     <p>We have implemented the following technical safeguards to protect your data within the Extension:</p>
     <ul class="security-list">
-      <li><strong>OAuth 2.0 with PKCE</strong> — Authentication uses the industry-standard Proof Key for Code Exchange flow, protecting against authorisation code interception attacks.</li>
-      <li><strong>Secure token storage</strong> — OAuth access tokens are stored in browser <code>sessionStorage</code>, scoped to the current session and never persisted across sessions.</li>
-      <li><strong>No password storage</strong> — The Extension never requests, handles, or stores your Microsoft account password.</li>
-      <li><strong>iframe sandboxing</strong> — Email HTML content is rendered inside a sandboxed <code>&lt;iframe&gt;</code> to prevent cross-site scripting (XSS) attacks originating from email content.</li>
-      <li><strong>Input escaping</strong> — All user-supplied input is escaped before rendering to prevent injection attacks.</li>
-      <li><strong>HTTPS-only</strong> — All communication with Microsoft Graph API and Azure AD is conducted exclusively over HTTPS/TLS-encrypted connections.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>OAuth 2.0 with PKCE</strong> — Authentication uses the industry-standard Proof Key for Code Exchange flow, protecting against authorisation code interception attacks.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Secure token storage</strong> — OAuth access tokens are stored in browser <code>sessionStorage</code>, scoped to the current session and never persisted across sessions.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>No password storage</strong> — The Extension never requests, handles, or stores your Microsoft account password.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>iframe sandboxing</strong> — Email HTML content is rendered inside a sandboxed <code>&lt;iframe&gt;</code> to prevent cross-site scripting (XSS) attacks originating from email content.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Input escaping</strong> — All user-supplied input is escaped before rendering to prevent injection attacks.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>HTTPS-only</strong> — All communication with Microsoft Graph API and Azure AD is conducted exclusively over HTTPS/TLS-encrypted connections.</li>
     </ul>
     <div class="callout blue">
-      <span class="callout-icon">ℹ️</span>
+      <div class="callout-icon-wrap"><i class="ti ti-info-circle" aria-hidden="true"></i></div>
       <div class="callout-body">
         While we implement robust client-side security measures, no method of electronic storage is 100% secure. We encourage you to keep your browser and operating system up to date and to protect your Microsoft account with a strong password and multi-factor authentication.
       </div>
@@ -708,7 +712,7 @@
     </table>
 
     <div class="callout purple">
-      <span class="callout-icon">🔐</span>
+      <div class="callout-icon-wrap"><i class="ti ti-lock" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>Minimal permissions, maximum transparency</strong>
         We request only the permissions necessary to operate the Extension's features. No write permissions are requested — the Extension can only read your data, never create, modify, or delete emails, contacts, or any other Outlook content.
@@ -717,10 +721,10 @@
 
     <p style="margin-top:20px;">Key principles governing our use of the Microsoft Graph API:</p>
     <ul class="check-list">
-      <li>Data retrieved via the API is used solely for the purposes described in this policy and is never shared with Staviox or any third party.</li>
-      <li>No data is shared with Microsoft beyond what is inherent in standard API usage (i.e., the API requests themselves).</li>
-      <li>You remain in full control of the Extension's access to your Microsoft account at all times. You may revoke these permissions at any time via <a href="https://myapps.microsoft.com" target="_blank" rel="noopener noreferrer">myapps.microsoft.com</a> or your Microsoft account settings.</li>
-      <li>All API calls are made over HTTPS and follow Microsoft's recommended security practices.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>Data retrieved via the API is used solely for the purposes described in this policy and is never shared with Staviox or any third party.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>No data is shared with Microsoft beyond what is inherent in standard API usage (i.e., the API requests themselves).</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>You remain in full control of the Extension's access to your Microsoft account at all times. You may revoke these permissions at any time via <a href="https://myapps.microsoft.com" target="_blank" rel="noopener noreferrer">myapps.microsoft.com</a> or your Microsoft account settings.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>All API calls are made over HTTPS and follow Microsoft's recommended security practices.</li>
     </ul>
   </section>
 
@@ -731,9 +735,9 @@
     <p>The Email Contact Analyzer is a professional productivity tool designed for adult users and is <strong>not intended for use by individuals under the age of 13</strong>.</p>
     <p>We do not knowingly collect or process any personal information from children under the age of 13. Because all processing happens locally in the browser and no data is transmitted to Staviox, we do not maintain records about our users. However, if a parent or guardian believes that a child under 13 has used the Extension, they are encouraged to:</p>
     <ul class="check-list">
-      <li>Uninstall the Extension from the child's browser to remove all locally stored data immediately.</li>
-      <li>Revoke the Extension's OAuth access via the child's Microsoft account settings.</li>
-      <li>Contact us at <a href="mailto:support@staviox.com">support@staviox.com</a> to request any further assistance or clarification.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>Uninstall the Extension from the child's browser to remove all locally stored data immediately.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>Revoke the Extension's OAuth access via the child's Microsoft account settings.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i>Contact us at <a href="mailto:support@staviox.com">support@staviox.com</a> to request any further assistance or clarification.</li>
     </ul>
     <p>We will respond to all parental data deletion requests promptly and take all appropriate steps within our technical capabilities.</p>
   </section>
@@ -745,13 +749,13 @@
     <p>Integrationhub Consulting CY LTD is headquartered in Nicosia, Cyprus, a member state of the European Union. We are committed to complying with the <strong>General Data Protection Regulation (EU) 2016/679</strong> ("GDPR").</p>
     <p>Because all data is processed and stored locally on your device and no personal data is transmitted to or processed by Staviox, the primary data controller relationship under the GDPR for your email data is between you and Microsoft. Nonetheless, the Extension is designed in full accordance with GDPR principles:</p>
     <ul class="security-list">
-      <li><strong>Data minimisation</strong> — We access only the data required to provide the Extension's features (email metadata and the first 255 characters of the body for search).</li>
-      <li><strong>Purpose limitation</strong> — Data accessed is used solely for the purposes described in this policy and no other purpose.</li>
-      <li><strong>Storage limitation</strong> — Data persists only as long as the Extension is installed or until you clear it via browser settings.</li>
-      <li><strong>Integrity and confidentiality</strong> — Appropriate technical measures (OAuth PKCE, HTTPS, iframe sandboxing, input escaping) are implemented to protect data security.</li>
-      <li><strong>Right to erasure</strong> — You may erase all Extension data by uninstalling the Extension or clearing browser storage.</li>
-      <li><strong>Right of access</strong> — All Extension-held data is visible directly within the Extension's interface.</li>
-      <li><strong>Lawful basis</strong> — Processing is based on your explicit consent, given when you authorise the Extension via Microsoft's OAuth consent screen.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Data minimisation</strong> — We access only the data required to provide the Extension's features (email metadata and the first 255 characters of the body for search).</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Purpose limitation</strong> — Data accessed is used solely for the purposes described in this policy and no other purpose.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Storage limitation</strong> — Data persists only as long as the Extension is installed or until you clear it via browser settings.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Integrity and confidentiality</strong> — Appropriate technical measures (OAuth PKCE, HTTPS, iframe sandboxing, input escaping) are implemented to protect data security.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Right to erasure</strong> — You may erase all Extension data by uninstalling the Extension or clearing browser storage.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Right of access</strong> — All Extension-held data is visible directly within the Extension's interface.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Lawful basis</strong> — Processing is based on your explicit consent, given when you authorise the Extension via Microsoft's OAuth consent screen.</li>
     </ul>
     <p>For any GDPR-related enquiries, please contact us at <a href="mailto:support@staviox.com">support@staviox.com</a>.</p>
   </section>
@@ -764,29 +768,29 @@
 
     <div class="retention-grid">
       <div class="retention-card">
-        <div class="icon">💾</div>
+        <div class="icon-wrap"><i class="ti ti-device-floppy" aria-hidden="true"></i></div>
         <h3>While Installed</h3>
         <p>Email metadata, contact data, and preferences are retained in your browser's local storage for as long as the Extension remains installed.</p>
       </div>
       <div class="retention-card">
-        <div class="icon">🔄</div>
+        <div class="icon-wrap"><i class="ti ti-refresh" aria-hidden="true"></i></div>
         <h3>Session Tokens</h3>
         <p>OAuth access tokens are held only in session storage and are automatically deleted when you close your browser tab or window.</p>
       </div>
       <div class="retention-card">
-        <div class="icon">🗑️</div>
+        <div class="icon-wrap"><i class="ti ti-trash" aria-hidden="true"></i></div>
         <h3>On Uninstall</h3>
         <p>All locally stored Extension data is permanently and immediately deleted from your device when you uninstall the Extension.</p>
       </div>
       <div class="retention-card">
-        <div class="icon">☁️</div>
+        <div class="icon-wrap"><i class="ti ti-cloud-off" aria-hidden="true"></i></div>
         <h3>No Server Retention</h3>
         <p>Staviox holds no copies of your data. There is no server-side database, backup, or log that retains your information.</p>
       </div>
     </div>
 
     <div class="callout green">
-      <span class="callout-icon">✅</span>
+      <div class="callout-icon-wrap"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>Zero server-side data retention</strong>
         We do not retain any user data on our infrastructure — because we never receive it in the first place. The only place your data ever exists is within your own browser.
@@ -800,14 +804,14 @@
     <h2>International Users</h2>
     <p>The Email Contact Analyzer is available to users worldwide. Because all data is processed locally in your browser, there are no cross-border data transfers initiated by the Extension.</p>
     <ul class="globe-list">
-      <li><strong>Local processing only</strong> — Your email data is fetched from Microsoft's servers directly into your browser and is never routed through Staviox or any infrastructure we operate.</li>
-      <li><strong>No cross-border transfers</strong> — Since Staviox does not receive your data, no transfer of personal data across international borders occurs on our part.</li>
-      <li><strong>EU users (GDPR)</strong> — The Extension is designed in compliance with the General Data Protection Regulation. EU users enjoy all GDPR rights as described in Section 11.</li>
-      <li><strong>California users (CCPA)</strong> — We do not sell personal information. California residents have the right to know about and delete personal information we hold — as no data is held by us, these rights are satisfied by default.</li>
-      <li><strong>Other jurisdictions</strong> — We are committed to respecting applicable privacy laws in all regions. Because data never leaves your device (beyond standard Microsoft API communication), the Extension's privacy model is inherently compliant with local-processing requirements across most jurisdictions.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i><strong>Local processing only</strong> — Your email data is fetched from Microsoft's servers directly into your browser and is never routed through Staviox or any infrastructure we operate.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i><strong>No cross-border transfers</strong> — Since Staviox does not receive your data, no transfer of personal data across international borders occurs on our part.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i><strong>EU users (GDPR)</strong> — The Extension is designed in compliance with the General Data Protection Regulation. EU users enjoy all GDPR rights as described in Section 11.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i><strong>California users (CCPA)</strong> — We do not sell personal information. California residents have the right to know about and delete personal information we hold — as no data is held by us, these rights are satisfied by default.</li>
+      <li><i class="ti ti-chevron-right list-icon" aria-hidden="true"></i><strong>Other jurisdictions</strong> — We are committed to respecting applicable privacy laws in all regions. Because data never leaves your device (beyond standard Microsoft API communication), the Extension's privacy model is inherently compliant with local-processing requirements across most jurisdictions.</li>
     </ul>
     <div class="callout blue">
-      <span class="callout-icon">🌍</span>
+      <div class="callout-icon-wrap"><i class="ti ti-globe" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>Microsoft's data residency</strong>
         When the Extension fetches your emails via the Microsoft Graph API, that data is handled by Microsoft's infrastructure subject to Microsoft's own data residency and international transfer policies. Please refer to <a href="https://privacy.microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft's Privacy Statement</a> for details.
@@ -857,10 +861,44 @@
 </div><!-- /container -->
 
 <!-- ════════════════════════════════════════════ FOOTER -->
-<footer>
-  <strong>Email Contact Analyzer</strong> — Privacy Policy<br>
-  &copy; 2026 Integrationhub Consulting CY LTD · Staviox · Nicosia, Cyprus<br>
-  <span class="updated">Last Updated: May 3, 2026</span>
+<footer style="background:#15181f;border-top:1px solid #2a2a2a;padding:40px 0 24px;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 28px;">
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;margin-bottom:40px;">
+      <div>
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+        <div style="margin-bottom:8px;">
+          <svg height="22" viewBox="0 0 300 52" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="44" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="48" font-weight="700" letter-spacing="-2" fill="#ffffff">STAV<tspan fill="#7dcaa9">IOX</tspan></text>
+          </svg>
+        </div>
+        <div style="font-size:13px;color:#888;margin-bottom:8px;">A small studio · Cyprus</div>
+        <p style="font-size:13px;color:#888;line-height:1.6;max-width:320px;">Focused productivity tools — built one at a time, privacy-first, fairly priced.</p>
+      </div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#888;margin-bottom:16px;">Products</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+          <li><a href="/email-contact-analyzer" style="font-size:14px;color:#888;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='#888'">Email Contact Analyzer</a></li>
+          <li><a href="/email-contact-analyzer/upgrade" style="font-size:14px;color:#888;text-decoration:none;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='#888'">Upgrade to Pro</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#888;margin-bottom:16px;">Company</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+          <li><a href="/privacy.html" style="font-size:14px;color:#888;text-decoration:none;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='#888'">Privacy Policy</a></li>
+          <li><a href="/manual.html" style="font-size:14px;color:#888;text-decoration:none;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='#888'">User Manual</a></li>
+          <li><a href="mailto:support@staviox.com" style="font-size:14px;color:#888;text-decoration:none;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='#888'">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid #2a2a2a;padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div style="font-size:12px;color:#888;">Staviox · Integration Hub Consulting CY · Nicosia · © 2026 · support@staviox.com</div>
+      <div style="display:flex;gap:18px;">
+        <a href="/privacy.html" style="font-size:12px;color:#888;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='#888'">Privacy Policy</a>
+        <a href="mailto:support@staviox.com" style="font-size:12px;color:#888;text-decoration:none;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='#888'">support@staviox.com</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 </body>
