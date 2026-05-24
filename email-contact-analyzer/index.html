@@ -5,29 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Staviox – Email Contact Analyzer for Outlook</title>
   <meta name="description" content="Email Contact Analyzer ranks your Outlook contacts by email volume, so you can focus on your most important relationships. Install free on Chrome and Edge." />
-  <link rel="icon" type="image/png" href="icons/icon48.png" />
+  <link rel="icon" type="image/png" href="/icons/icon48.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
   <style>
     /* ── Reset ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     /* ── Tokens ─────────────────────────────────────────────────── */
     :root {
-      --bg:          #0f0f12;
-      --surface:     #17171d;
-      --card:        #1e1e28;
-      --card-hover:  #252530;
-      --border:      #2a2a38;
-      --faint:       #3a3a4a;
-      --blue:        #0078d4;
-      --blue-lt:     #4dabf7;
-      --blue-glow:   rgba(0,120,212,0.16);
+      --bg:           #0e1014;
+      --surface:      #15181f;
+      --card:         #1a1d24;
+      --card-hover:   #1e2129;
+      --border:       rgba(255,255,255,0.08);
+      --border-solid: #2a2a2a;
+      --faint:        #2a2a2a;
+      --accent:       #7dcaa9;
+      --accent-lt:    #a3d9bf;
+      --accent-glow:  rgba(125,202,169,0.12);
       --text:        #e8e8f0;
-      --muted:       #888898;
+      --muted:        #888888;
+      --muted-2:      #5a5a6a;
       --white:       #ffffff;
       --radius:      12px;
       --radius-lg:   20px;
       --ease:        0.2s ease;
-      --font:        'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      --font:        'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -41,7 +45,7 @@
       font-size: 16px;
     }
 
-    a { color: var(--blue-lt); text-decoration: none; }
+    a { color: var(--accent-lt); text-decoration: none; }
     a:hover { text-decoration: underline; }
     img { max-width: 100%; display: block; }
 
@@ -55,17 +59,17 @@
     .section { padding: 88px 0; }
     .section-alt {
       background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-top: 1px solid var(--border-solid);
+      border-bottom: 1px solid var(--border-solid);
     }
 
     .label {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--blue-glow);
+      background: var(--accent-glow);
       border: 1px solid rgba(0,120,212,0.3);
-      color: var(--blue-lt);
+      color: var(--accent-lt);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -114,23 +118,22 @@
     }
 
     .btn-primary {
-      background: var(--blue);
-      color: #fff;
+      background: var(--accent);
+      color: #0e1014;
     }
     .btn-primary:hover {
-      background: #1483d8;
+      background: var(--accent-lt);
       transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(0,120,212,0.38);
     }
 
     .btn-ghost {
       background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.12);
     }
     .btn-ghost:hover {
-      background: var(--card);
-      border-color: var(--faint);
+      background: rgba(255,255,255,0.04);
+      border-color: var(--accent);
       transform: translateY(-1px);
     }
 
@@ -141,10 +144,10 @@
       position: sticky;
       top: 0;
       z-index: 200;
-      background: rgba(15,15,18,0.88);
+      background: rgba(14,16,20,0.88);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-solid);
     }
 
     .nav-inner {
@@ -171,7 +174,7 @@
       border-radius: 7px;
     }
 
-    .nav-logo span { color: var(--blue-lt); }
+    .nav-logo span { color: var(--accent-lt); }
 
     .nav-links {
       display: flex;
@@ -206,7 +209,7 @@
       transform: translateX(-50%);
       width: 860px;
       height: 560px;
-      background: radial-gradient(ellipse at center, rgba(0,120,212,0.13) 0%, transparent 68%);
+      background: radial-gradient(ellipse at center, rgba(125,202,169,0.10) 0%, transparent 68%);
       pointer-events: none;
     }
 
@@ -228,10 +231,7 @@
 
     .hero h1 em {
       font-style: normal;
-      background: linear-gradient(90deg, #0078d4 0%, #4dabf7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent);
     }
 
     .hero-sub {
@@ -252,7 +252,7 @@
 
     .hero-note {
       font-size: 13px;
-      color: var(--faint);
+      color: var(--muted-2);
     }
 
     .hero-screenshot {
@@ -277,7 +277,7 @@
     .hero-screenshot img {
       width: 100%;
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-solid);
       box-shadow: 0 48px 120px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.03);
     }
 
@@ -292,16 +292,15 @@
       font-size: 15px;
       text-decoration: none !important;
       transition: all var(--ease);
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #0e1014;
     }
 
     .browser-btn:hover {
-      background: var(--card-hover);
-      border-color: var(--faint);
+      background: var(--accent-lt);
+      border-color: var(--accent-lt);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
 
     .browser-btn svg { flex-shrink: 0; }
@@ -321,12 +320,13 @@
       left: calc(16.6% + 16px);
       right: calc(16.6% + 16px);
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(0,120,212,0.4) 20%, rgba(0,120,212,0.4) 80%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(125,202,169,0.3) 20%, rgba(125,202,169,0.3) 80%, transparent);
     }
 
     .step-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border: 1px solid rgba(64,110,90,0.35) !important;
+      border: 1px solid var(--border-solid);
       border-radius: var(--radius);
       padding: 32px 24px;
       text-align: center;
@@ -338,14 +338,14 @@
       height: 80px;
       border-radius: 50%;
       background: var(--bg);
-      border: 2px solid var(--blue);
+      border: 2px solid var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
       font-size: 28px;
       font-weight: 800;
-      color: var(--blue-lt);
+      color: var(--accent-lt);
       position: relative;
       z-index: 1;
       box-shadow: 0 0 24px rgba(0,120,212,0.18);
@@ -372,8 +372,9 @@
     }
 
     .feature-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border: 1px solid rgba(64,110,90,0.35) !important;
+      border: 1px solid var(--border-solid);
       border-radius: var(--radius);
       padding: 28px;
       transition: all var(--ease);
@@ -386,21 +387,22 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
       opacity: 0;
       transition: opacity var(--ease);
     }
 
     .feature-card:hover {
       background: var(--card-hover);
-      border-color: var(--faint);
+      border-color: var(--muted-2);
       transform: translateY(-3px);
       box-shadow: 0 16px 48px rgba(0,0,0,0.35);
     }
 
     .feature-card:hover::before { opacity: 1; }
 
-    .feature-icon { font-size: 34px; margin-bottom: 16px; display: block; }
+    .feature-icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 10px; background: rgba(125,202,169,0.15); border: 1px solid rgba(125,202,169,0.3); margin-bottom: 16px; }
+    .feature-icon i { font-size: 22px; color: #7dcaa9; }
 
     .feature-title {
       font-size: 17px;
@@ -412,7 +414,7 @@
     .feature-tagline {
       font-size: 13px;
       font-weight: 600;
-      color: var(--blue-lt);
+      color: var(--accent-lt);
       font-style: italic;
       margin-bottom: 12px;
     }
@@ -434,7 +436,7 @@
 
     .feature-bullets li::before {
       content: '–';
-      color: var(--blue);
+      color: var(--accent);
       font-weight: 700;
       flex-shrink: 0;
       margin-top: 1px;
@@ -448,8 +450,9 @@
     }
 
     .persona-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border: 1px solid rgba(64,110,90,0.35) !important;
+      border: 1px solid var(--border-solid);
       border-radius: var(--radius);
       padding: 26px 24px;
       transition: all var(--ease);
@@ -457,14 +460,12 @@
 
     .persona-card:hover {
       background: var(--card-hover);
-      border-color: var(--faint);
+      border-color: var(--muted-2);
       transform: translateY(-2px);
     }
 
-    .persona-icon {
-      font-size: 30px;
-      margin-bottom: 14px;
-    }
+    .persona-icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 10px; background: rgba(125,202,169,0.15); border: 1px solid rgba(125,202,169,0.3); margin-bottom: 12px; }
+    .persona-icon i { font-size: 22px; color: #7dcaa9; }
 
     .persona-title {
       font-size: 15px;
@@ -481,8 +482,8 @@
 
     /* ── Privacy ────────────────────────────────────────────────── */
     .privacy-box {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border: 1px solid rgba(64,110,90,0.35);
       border-radius: var(--radius-lg);
       padding: 56px 60px;
       display: grid;
@@ -540,7 +541,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--blue-lt);
+      color: var(--accent-lt);
       font-size: 12px;
       flex-shrink: 0;
       margin-top: 2px;
@@ -558,7 +559,7 @@
 
     .privacy-stat {
       background: var(--bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-solid);
       border-radius: var(--radius);
       padding: 18px 22px;
       display: flex;
@@ -566,7 +567,8 @@
       gap: 16px;
     }
 
-    .privacy-stat-icon { font-size: 26px; flex-shrink: 0; }
+    .privacy-stat-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; background: rgba(125,202,169,0.15); border: 1px solid rgba(125,202,169,0.3); flex-shrink: 0; }
+    .privacy-stat-icon i { font-size: 20px; color: #7dcaa9; }
 
     .privacy-stat-text strong {
       display: block;
@@ -591,8 +593,8 @@
     }
 
     .pricing-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border: 1px solid rgba(64,110,90,0.35);
       border-radius: var(--radius-lg);
       padding: 36px 32px;
       position: relative;
@@ -606,7 +608,7 @@
     }
 
     .pricing-card.featured {
-      border-color: var(--blue);
+      border-color: var(--accent);
       box-shadow: 0 0 0 1px rgba(0,120,212,0.2), 0 24px 64px rgba(0,0,0,0.4);
     }
 
@@ -615,7 +617,7 @@
       top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--blue);
+      background: var(--accent);
       color: #fff;
       font-size: 11px;
       font-weight: 700;
@@ -631,7 +633,7 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--blue-lt);
+      color: var(--accent-lt);
       margin-bottom: 14px;
     }
 
@@ -673,7 +675,7 @@
 
     .pricing-divider {
       border: none;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-solid);
       margin: 24px 0;
     }
 
@@ -695,13 +697,13 @@
     }
 
     .pricing-features li .tick {
-      color: var(--blue-lt);
+      color: var(--accent-lt);
       font-weight: 700;
       flex-shrink: 0;
     }
 
     .pricing-features li.dim { opacity: 0.4; }
-    .pricing-features li.dim .tick { color: var(--faint); }
+    .pricing-features li.dim .tick { color: var(--muted-2); }
 
     /* ── CTA ────────────────────────────────────────────────────── */
     .cta-section {
@@ -745,7 +747,7 @@
     /* ── Footer ─────────────────────────────────────────────────── */
     .footer {
       background: var(--surface);
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-solid);
       padding: 52px 0 32px;
     }
 
@@ -764,20 +766,15 @@
       margin-bottom: 6px;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-    }
-
-    .footer-brand-name img {
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
-      opacity: 0.85;
     }
 
     .footer-tagline {
       font-size: 13px;
       color: var(--muted);
       margin-bottom: 16px;
+      text-align: center;
     }
 
     .footer-col-title {
@@ -785,7 +782,7 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--faint);
+      color: var(--muted);
       margin-bottom: 16px;
     }
 
@@ -802,10 +799,10 @@
       transition: color var(--ease);
     }
 
-    .footer-links a:hover { color: var(--white); text-decoration: none; }
+    .footer-links a:hover { color: #7dcaa9; text-decoration: none; }
 
     .footer-bottom {
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-solid);
       padding-top: 28px;
       display: flex;
       align-items: center;
@@ -816,7 +813,7 @@
 
     .footer-copy {
       font-size: 12px;
-      color: var(--faint);
+      color: var(--muted-2);
       line-height: 1.7;
     }
 
@@ -862,8 +859,8 @@
     }
 
     .gallery-item {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(rgb(26,29,36) 0%, #031415 100%);
+      border: 1px solid rgba(64,110,90,0.35);
       border-radius: var(--radius);
       overflow: hidden;
       cursor: pointer;
@@ -871,7 +868,7 @@
     }
 
     .gallery-item:hover {
-      border-color: var(--blue);
+      border-color: var(--accent);
       transform: scale(1.02);
       box-shadow: 0 10px 32px rgba(0,0,0,0.45);
     }
@@ -923,8 +920,9 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="/" class="nav-logo">
-      <img src="icons/icon128.png" alt="Staviox logo" />
-      STAVIOX</span>
+      <svg height="28" viewBox="0 0 300 52" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="44" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="48" font-weight="700" letter-spacing="-2" fill="#ffffff">STAV<tspan fill="#7dcaa9">IOX</tspan></text>
+      </svg>
     </a>
 
     <ul class="nav-links">
@@ -980,7 +978,7 @@
       </a>
     </div>
 
-    <p class="hero-note">Works with Microsoft 365 · Free up to 20 contacts</p>
+    <p class="hero-note">Works with Microsoft 365 · Free up to 50 contacts</p>
 
     <div class="hero-screenshot">
       <img src="Screenshots/screenshot-1-main-view.png" alt="Email Contact Analyzer showing ranked contacts and email history panel" />
@@ -1035,7 +1033,7 @@
     <div class="features-grid">
 
       <div class="feature-card">
-        <span class="feature-icon">📊</span>
+        <span class="feature-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></span>
         <div class="feature-title">Contact Ranking</div>
         <div class="feature-tagline">"See your top contacts ranked by total email volume"</div>
         <ul class="feature-bullets">
@@ -1046,7 +1044,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🔍</span>
+        <span class="feature-icon"><i class="ti ti-search" aria-hidden="true"></i></span>
         <div class="feature-title">Powerful Search</div>
         <div class="feature-tagline">"Find any email in seconds with full-text search"</div>
         <ul class="feature-bullets">
@@ -1057,7 +1055,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">📧</span>
+        <span class="feature-icon"><i class="ti ti-mail" aria-hidden="true"></i></span>
         <div class="feature-title">Complete Conversation View</div>
         <div class="feature-tagline">"Click any contact to see your entire email history"</div>
         <ul class="feature-bullets">
@@ -1068,7 +1066,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">📅</span>
+        <span class="feature-icon"><i class="ti ti-calendar" aria-hidden="true"></i></span>
         <div class="feature-title">Date Range Filtering</div>
         <div class="feature-tagline">"Zero in on any time window instantly"</div>
         <ul class="feature-bullets">
@@ -1079,7 +1077,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🌐</span>
+        <span class="feature-icon"><i class="ti ti-globe" aria-hidden="true"></i></span>
         <div class="feature-title">Domain &amp; Address Search</div>
         <div class="feature-tagline">"Find everyone you've emailed at a company"</div>
         <ul class="feature-bullets">
@@ -1090,7 +1088,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🔵🟠</span>
+        <span class="feature-icon"><i class="ti ti-layers-intersect" aria-hidden="true"></i></span>
         <div class="feature-title">At-a-Glance Contact Indicators</div>
         <div class="feature-tagline">"Know exactly who each contact is before you click"</div>
         <ul class="feature-bullets">
@@ -1102,7 +1100,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">📝</span>
+        <span class="feature-icon"><i class="ti ti-user-edit" aria-hidden="true"></i></span>
         <div class="feature-title">Outlook Contact Integration</div>
         <div class="feature-tagline">"Edit and create contacts without leaving the app"</div>
         <ul class="feature-bullets">
@@ -1113,7 +1111,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🗑️</span>
+        <span class="feature-icon"><i class="ti ti-trash" aria-hidden="true"></i></span>
         <div class="feature-title">Bulk Email Actions</div>
         <div class="feature-tagline">"Clean up hundreds of emails in a few clicks"</div>
         <ul class="feature-bullets">
@@ -1124,7 +1122,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🌓</span>
+        <span class="feature-icon"><i class="ti ti-palette" aria-hidden="true"></i></span>
         <div class="feature-title">7 Beautiful Themes</div>
         <div class="feature-tagline">"Easy on the eyes, day or night"</div>
         <ul class="feature-bullets">
@@ -1135,7 +1133,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🔒</span>
+        <span class="feature-icon"><i class="ti ti-shield-lock" aria-hidden="true"></i></span>
         <div class="feature-title">Privacy First</div>
         <div class="feature-tagline">"Your data never leaves your computer"</div>
         <ul class="feature-bullets">
@@ -1146,7 +1144,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">📐</span>
+        <span class="feature-icon"><i class="ti ti-layout-sidebar" aria-hidden="true"></i></span>
         <div class="feature-title">Flexible Layout</div>
         <div class="feature-tagline">"Arrange your workspace exactly how you like it"</div>
         <ul class="feature-bullets">
@@ -1157,7 +1155,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🌍</span>
+        <span class="feature-icon"><i class="ti ti-language" aria-hidden="true"></i></span>
         <div class="feature-title">Multi-Language Support</div>
         <div class="feature-tagline">"Works with international names"</div>
         <ul class="feature-bullets">
@@ -1168,7 +1166,7 @@
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">⚡</span>
+        <span class="feature-icon"><i class="ti ti-bolt" aria-hidden="true"></i></span>
         <div class="feature-title">Built for Large Mailboxes</div>
         <div class="feature-tagline">"Handles years of email history without breaking a sweat"</div>
         <ul class="feature-bullets">
@@ -1239,22 +1237,22 @@
 
     <div class="personas-grid">
       <div class="persona-card">
-        <div class="persona-icon">💼</div>
+        <div class="persona-icon"><i class="ti ti-briefcase" aria-hidden="true"></i></div>
         <div class="persona-title">Sales Professionals</div>
         <p class="persona-desc">Track client relationships, see who you haven't emailed in a while, and never lose touch with key accounts.</p>
       </div>
       <div class="persona-card">
-        <div class="persona-icon">🎧</div>
+        <div class="persona-icon"><i class="ti ti-headset" aria-hidden="true"></i></div>
         <div class="persona-title">Support Teams</div>
         <p class="persona-desc">Quickly surface full conversation history with any customer — no switching between threads or folders.</p>
       </div>
       <div class="persona-card">
-        <div class="persona-icon">📋</div>
+        <div class="persona-icon"><i class="ti ti-clipboard-list" aria-hidden="true"></i></div>
         <div class="persona-title">Managers &amp; Coordinators</div>
         <p class="persona-desc">Stay on top of communication with multiple stakeholders and identify who needs attention most.</p>
       </div>
       <div class="persona-card">
-        <div class="persona-icon">📥</div>
+        <div class="persona-icon"><i class="ti ti-inbox" aria-hidden="true"></i></div>
         <div class="persona-title">High-Volume Email Users</div>
         <p class="persona-desc">Stop drowning in Outlook. Rank, filter, and search your way to the emails that actually matter.</p>
       </div>
@@ -1320,28 +1318,28 @@
 
       <div class="privacy-visual">
         <div class="privacy-stat">
-          <div class="privacy-stat-icon">🏠</div>
+          <div class="privacy-stat-icon"><i class="ti ti-device-desktop" aria-hidden="true"></i></div>
           <div class="privacy-stat-text">
             <strong>100% Local Processing</strong>
             <span>Email data never leaves your machine</span>
           </div>
         </div>
         <div class="privacy-stat">
-          <div class="privacy-stat-icon">👁️</div>
+          <div class="privacy-stat-icon"><i class="ti ti-eye-off" aria-hidden="true"></i></div>
           <div class="privacy-stat-text">
             <strong>Read-Only Access</strong>
             <span>We cannot send, delete, or modify emails</span>
           </div>
         </div>
         <div class="privacy-stat">
-          <div class="privacy-stat-icon">🔐</div>
+          <div class="privacy-stat-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
           <div class="privacy-stat-text">
             <strong>OAuth 2.0 PKCE</strong>
             <span>Tokens stored in session only, never sent to us</span>
           </div>
         </div>
         <div class="privacy-stat">
-          <div class="privacy-stat-icon">🚫</div>
+          <div class="privacy-stat-icon"><i class="ti ti-ban" aria-hidden="true"></i></div>
           <div class="privacy-stat-text">
             <strong>Zero Analytics</strong>
             <span>No tracking scripts, no telemetry, no ads</span>
@@ -1372,14 +1370,13 @@
         <div class="pricing-period">forever</div>
         <hr class="pricing-divider" />
         <ul class="pricing-features">
-          <li><span class="tick">✓</span> Up to 20 contacts</li>
+          <li><span class="tick">✓</span> Up to 50 contacts</li>
           <li><span class="tick">✓</span> Contact ranking &amp; sorting</li>
           <li><span class="tick">✓</span> Full-text email search</li>
           <li><span class="tick">✓</span> Conversation history view</li>
           <li><span class="tick">✓</span> Date range filtering</li>
           <li><span class="tick">✓</span> All 7 themes</li>
           <li><span class="tick">✓</span> Outlook contact integration</li>
-          <li class="dim"><span class="tick">–</span> <span style="color:var(--faint)">Pro features (coming soon)</span></li>
         </ul>
         <a href="#download" class="btn btn-ghost" style="width:100%;justify-content:center">Install Free</a>
       </div>
@@ -1394,10 +1391,6 @@
         <ul class="pricing-features">
           <li><span class="tick">✓</span> Everything in Free</li>
           <li><span class="tick">✓</span> Unlimited contacts</li>
-          <li><span class="tick">✓</span> Unlimited email scanning</li>
-          <li><span class="tick">✓</span> Export to CSV</li>
-          <li><span class="tick">✓</span> Advanced filters</li>
-          <li><span class="tick">✓</span> Priority support</li>
         </ul>
         <a href="/email-contact-analyzer/upgrade" class="btn btn-primary" style="width:100%;justify-content:center">
           Upgrade to Pro
@@ -1414,7 +1407,7 @@
 <section class="cta-section section-alt" id="download">
   <div class="container">
     <h2>Start Understanding Your Inbox Today</h2>
-    <p>Free for up to 20 contacts. No credit card, no account needed beyond your Microsoft 365 login.</p>
+    <p>Free for up to 50 contacts. No credit card, no account needed beyond your Microsoft 365 login.</p>
 
     <div class="cta-browsers">
       <a href="https://chromewebstore.google.com/detail/email-contact-analyzer/lhejammcpjlgjcfedoihddkhookincpg" class="browser-btn" style="padding:14px 26px;font-size:15px">
@@ -1436,7 +1429,7 @@
       </a>
     </div>
 
-    <p style="margin-top:18px;font-size:13px;color:var(--faint)">
+    <p style="margin-top:18px;font-size:13px;color:var(--muted-2)">
       Requires Microsoft 365 account · Works with Chrome &amp; Edge
     </p>
   </div>
@@ -1448,24 +1441,23 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
-      <div>
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
         <div class="footer-brand-name">
-          <img src="icons/icon128.png" alt="" />
-          STAVIOX
+          <svg height="22" viewBox="0 0 300 52" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="44" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="48" font-weight="700" letter-spacing="-2" fill="#ffffff">STAV<tspan fill="#7dcaa9">IOX</tspan></text>
+          </svg>
         </div>
-        <div class="footer-tagline">Premium Productivity Solutions</div>
-        <p style="font-size:13px;color:var(--faint);line-height:1.6;max-width:320px">
-          Email Contact Analyzer helps you understand your inbox by ranking contacts, surfacing conversation history, and making search effortless — all privately, on your machine.
+        <div class="footer-tagline">A small studio · Cyprus</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;max-width:320px">
+          Focused productivity tools — built one at a time, privacy-first, fairly priced.
         </p>
       </div>
 
       <div>
-        <div class="footer-col-title">Product</div>
+        <div class="footer-col-title">Products</div>
         <ul class="footer-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#screenshots">Screenshots</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="/email-contact-analyzer">Email Contact Analyzer</a></li>
+          <li><a href="/email-contact-analyzer/upgrade">Upgrade to Pro</a></li>
           <li><a href="/manual.html">User Manual</a></li>
         </ul>
       </div>
@@ -1481,15 +1473,12 @@
 
     <div class="footer-bottom">
       <div class="footer-copy">
-        © 2026 Staviox. Operated by Integrationhub Consulting LTD. · Nicosia, Cyprus
+        Staviox · Integration Hub Consulting CY · Nicosia · © 2026 · support@staviox.com
       </div>
       <div style="display:flex;gap:18px">
-        <a href="/privacy.html" style="font-size:12px;color:var(--faint)">Privacy Policy</a>
-        <a href="mailto:support@staviox.com" style="font-size:12px;color:var(--faint)">support@staviox.com</a>
+        <a href="/privacy.html" style="font-size:12px;color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='var(--muted)'">Privacy Policy</a>
+        <a href="mailto:support@staviox.com" style="font-size:12px;color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#7dcaa9'" onmouseout="this.style.color='var(--muted)'">support@staviox.com</a>
       </div>
-    </div>
-    <div style="text-align:center;padding:20px 0 0;border-top:1px solid rgba(255,255,255,0.08);margin-top:20px">
-      <a href="https://saasbrowser.com/en/saas/1510973/staviox" target="_blank" rel="noopener" style="display:inline-block;background:#fff;border-radius:10px;padding:6px 10px"><img src="https://files.saasbrowser.com/6g41h513riyrysvtluoi89rucx6m" alt="Staviox - Find B2B SaaS tools verified badge" width="200" height="133" /></a>
     </div>
   </div>
 </footer>
