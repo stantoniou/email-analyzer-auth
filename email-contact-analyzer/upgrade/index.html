@@ -6,37 +6,40 @@
   <title>Upgrade to Pro – Email Contact Analyzer</title>
   <meta name="description" content="Upgrade Email Contact Analyzer to Pro for unlimited contacts." />
   <link rel="icon" type="image/png" href="/icons/icon48.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0f0f12;
-      --surface:   #17171d;
-      --card:      #1e1e28;
-      --border:    #2a2a38;
-      --faint:     #3a3a4a;
-      --blue:      #0078d4;
-      --blue-lt:   #4dabf7;
-      --blue-glow: rgba(0,120,212,0.16);
+      --bg:           #0e1014;
+      --surface:      #15181f;
+      --card:         #1a1d24;
+      --border:       rgba(255,255,255,0.08);
+      --faint:        #2a2a2a;
+      --border-solid: #2a2a2a;
+      --accent:       #7dcaa9;
+      --accent-lt:    #a3d9bf;
+      --accent-glow:  rgba(125,202,169,0.12);
       --text:      #e8e8f0;
-      --muted:     #888898;
+      --muted:        #888888;
       --white:     #ffffff;
-      --green:     #22c55e;
+      --muted-2:      #5a5a6a;
       --radius:    12px;
       --radius-lg: 20px;
       --ease:      0.2s ease;
-      --font:      'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      --font:      'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
     body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.65; overflow-x: hidden; font-size: 16px; }
-    a { color: var(--blue-lt); text-decoration: none; }
+    a { color: var(--accent-lt); text-decoration: none; }
     img { max-width: 100%; display: block; }
 
     .container { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
 
     /* Nav */
-    .nav { position: sticky; top: 0; z-index: 200; background: rgba(15,15,18,0.88); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+    .nav { position: sticky; top: 0; z-index: 200; background: rgba(14,16,20,0.88); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; color: var(--white); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; text-decoration: none !important; }
     .nav-logo img { width: 30px; height: 30px; border-radius: 7px; }
@@ -47,9 +50,9 @@
     .hero { padding: 72px 0 52px; text-align: center; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; top: -160px; left: 50%; transform: translateX(-50%); width: 700px; height: 500px; background: radial-gradient(ellipse at center, rgba(0,120,212,0.12) 0%, transparent 68%); pointer-events: none; }
     .hero-inner { position: relative; z-index: 1; }
-    .label { display: inline-flex; align-items: center; gap: 6px; background: var(--blue-glow); border: 1px solid rgba(0,120,212,0.3); color: var(--blue-lt); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; }
+    .label { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-glow); border: 1px solid rgba(0,120,212,0.3); color: var(--accent-lt); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; }
     .hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.07; color: var(--white); margin: 20px 0 16px; }
-    .hero h1 em { font-style: normal; background: linear-gradient(90deg, #0078d4 0%, #4dabf7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
     .hero-sub { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.7; }
 
     /* User email display */
@@ -65,41 +68,41 @@
     .toggle-switch input { opacity: 0; width: 0; height: 0; }
     .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 99px; transition: background var(--ease); }
     .toggle-slider::before { content: ''; position: absolute; height: 18px; width: 18px; left: 4px; bottom: 4px; background: var(--white); border-radius: 50%; transition: transform var(--ease); }
-    .toggle-switch input:checked + .toggle-slider { background: var(--blue); }
+    .toggle-switch input:checked + .toggle-slider { background: var(--accent); }
     .toggle-switch input:checked + .toggle-slider::before { transform: translateX(22px); }
-    .annual-badge { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25); color: var(--green); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 99px; letter-spacing: 0.04em; }
+    .annual-badge { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25); color: var(--accent); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 99px; letter-spacing: 0.04em; }
 
     .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; max-width: 780px; margin: 0 auto; }
 
     .pricing-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px 32px; position: relative; text-align: center; transition: all var(--ease); }
     .pricing-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
-    .pricing-card.featured { border-color: var(--blue); box-shadow: 0 0 0 1px rgba(0,120,212,0.2), 0 24px 64px rgba(0,0,0,0.4); }
+    .pricing-card.featured { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(0,120,212,0.2), 0 24px 64px rgba(0,0,0,0.4); }
 
-    .pricing-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 16px; border-radius: 99px; white-space: nowrap; }
+    .pricing-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #0e1014; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 16px; border-radius: 99px; white-space: nowrap; }
 
-    .pricing-plan { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-lt); margin-bottom: 14px; }
+    .pricing-plan { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-lt); margin-bottom: 14px; }
     .pricing-price { font-size: 52px; font-weight: 800; color: var(--white); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
     .pricing-price sup { font-size: 22px; font-weight: 700; vertical-align: top; margin-top: 10px; display: inline-block; }
     .pricing-period { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
-    .pricing-equiv { font-size: 12px; color: var(--green); font-weight: 600; margin-bottom: 24px; min-height: 18px; }
+    .pricing-equiv { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 24px; min-height: 18px; }
     .pricing-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
 
     .pricing-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
     .pricing-features li { font-size: 14px; color: var(--muted); display: flex; align-items: flex-start; gap: 10px; }
-    .pricing-features li .tick { color: var(--blue-lt); font-weight: 700; flex-shrink: 0; }
+    .pricing-features li .tick { color: var(--accent-lt); font-weight: 700; flex-shrink: 0; }
     .pricing-features li.pro-feature { color: var(--text); }
-    .pricing-features li.pro-feature .tick { color: var(--green); }
+    .pricing-features li.pro-feature .tick { color: var(--accent); }
     .pricing-features li.dim { opacity: 0.4; }
 
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 24px; border-radius: 9px; font-weight: 600; font-size: 15px; cursor: pointer; border: none; text-decoration: none !important; transition: all var(--ease); white-space: nowrap; font-family: var(--font); width: 100%; }
-    .btn-primary { background: var(--blue); color: #fff; }
-    .btn-primary:hover { background: #1483d8; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,120,212,0.38); }
+    .btn-primary { background: var(--accent); color: #0e1014; }
+    .btn-primary:hover { background: var(--accent-lt); transform: translateY(-1px);  }
     .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: var(--faint); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: var(--muted-2); }
     .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
 
     .promo-link { display: block; text-align: center; margin-top: 12px; font-size: 13px; color: var(--muted); }
-    .promo-link a { color: var(--blue-lt); }
+    .promo-link a { color: var(--accent-lt); }
 
     /* Feature comparison table */
     .compare-section { padding: 0 0 80px; }
@@ -108,19 +111,19 @@
     .compare-table { width: 100%; border-collapse: collapse; }
     .compare-table th { padding: 14px 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); text-align: left; }
     .compare-table th:not(:first-child) { text-align: center; }
-    .compare-table th.pro-col { color: var(--blue-lt); }
+    .compare-table th.pro-col { color: var(--accent-lt); }
     .compare-table td { padding: 13px 20px; font-size: 14px; color: var(--muted); border-bottom: 1px solid rgba(42,42,56,0.6); }
     .compare-table td:not(:first-child) { text-align: center; }
     .compare-table tr:hover td { background: rgba(30,30,40,0.5); }
     .compare-table .feature-name { color: var(--text); font-weight: 500; }
-    .check { color: var(--green); font-size: 16px; font-weight: 700; }
-    .cross { color: var(--faint); font-size: 16px; }
-    .compare-table .section-row td { padding: 20px 20px 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); border-bottom: none; }
+    .check { color: var(--accent); font-size: 16px; font-weight: 700; }
+    .cross { color: var(--muted-2); font-size: 16px; }
+    .compare-table .section-row td { padding: 20px 20px 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-2); border-bottom: none; }
 
     /* Trust */
     .trust-bar { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; padding: 0 0 60px; }
     .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
-    .trust-item svg { color: var(--blue-lt); flex-shrink: 0; }
+    .trust-item svg { color: var(--accent-lt); flex-shrink: 0; }
 
     /* Loading state */
     .btn-loading { pointer-events: none; }
@@ -143,8 +146,9 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="/" class="nav-logo">
-      <img src="/icons/icon128.png" alt="Staviox logo" />
-      STAVIOX
+      <svg height="28" viewBox="0 0 300 52" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="44" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="48" font-weight="700" letter-spacing="-2" fill="#ffffff">STAV<tspan fill="#7dcaa9">IOX</tspan></text>
+      </svg>
     </a>
     <a href="/email-contact-analyzer" class="nav-back">
       ← Email Contact Analyzer
@@ -219,7 +223,7 @@
     </div>
 
     <div style="text-align:center;margin-top:28px;">
-      <p style="font-size:13px;color:var(--faint);">Cancel anytime · Secure payment via Stripe · Receipts &amp; invoices included</p>
+      <p style="font-size:13px;color:var(--muted-2);">Cancel anytime · Secure payment via Stripe · Receipts &amp; invoices included</p>
     </div>
 
   </div>
@@ -228,19 +232,19 @@
 <!-- Trust bar -->
 <div class="trust-bar">
   <div class="trust-item">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+    <i class="ti ti-lock" aria-hidden="true"></i>
     Secure payment via Stripe
   </div>
   <div class="trust-item">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <i class="ti ti-circle-check" aria-hidden="true"></i>
     Cancel anytime
   </div>
   <div class="trust-item">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+    <i class="ti ti-file-invoice" aria-hidden="true"></i>
     Invoices &amp; receipts included
   </div>
   <div class="trust-item">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+    <i class="ti ti-globe" aria-hidden="true"></i>
     EU company · GDPR compliant
   </div>
 </div>

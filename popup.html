@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email Contact Analyzer</title>
+    <style>
+        body {
+            width: 260px;
+            padding: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: #0e1014;
+            color: #e8e8f0;
+        }
+        h3 {
+            margin: 0 0 14px 0;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .btn {
+            width: 100%;
+            padding: 11px;
+            background: #7dcaa9;
+            color: #0e1014;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .btn:hover { background: #a3d9bf; }
+        .btn:active { opacity: 0.85; }
+        .info {
+            margin-top: 12px;
+            padding: 9px 10px;
+            background: #1a1d24;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #888888;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h3>Email Contact Analyzer</h3>
+    <button class="btn" id="openAnalyzer">Open Analyzer</button>
+    <div class="info">
+        Opens in a separate window — resize, move, or put it on a second monitor.
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
