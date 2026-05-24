@@ -417,7 +417,8 @@
       line-height: 1.65;
     }
 
-    .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .callout-icon-wrap { width: 36px; height: 36px; border-radius: 8px; background: rgba(125,202,169,0.15); border: 1px solid rgba(125,202,169,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .callout-icon-wrap i { font-size: 18px; color: #7dcaa9; }
     .callout p { margin: 0; font-size: 14px; }
 
     .callout-tip {
@@ -773,7 +774,7 @@
       </div>
 
       <div class="callout callout-warn">
-        <span class="callout-icon">⚠️</span>
+        <div class="callout-icon-wrap"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
         <p><strong>Note:</strong> Personal Microsoft accounts (outlook.com / hotmail.com / live.com) are <strong>not</strong> supported. The extension requires a Microsoft 365 business or school account.</p>
       </div>
     </section>
@@ -790,7 +791,7 @@
       </ol>
 
       <div class="callout callout-tip">
-        <span class="callout-icon">💡</span>
+        <div class="callout-icon-wrap"><i class="ti ti-bulb" aria-hidden="true"></i></div>
         <p><strong>Tip:</strong> Pin the extension icon to your toolbar for quick access. Click the puzzle-piece icon in the toolbar → find <em>Email Contact Analyzer</em> → click the pin icon.</p>
       </div>
     </section>
@@ -1004,7 +1005,7 @@
       <h2>Deleting Emails</h2>
 
       <div class="callout callout-warn">
-        <span class="callout-icon">⚠️</span>
+        <div class="callout-icon-wrap"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
         <p><strong>Warning:</strong> Deletion is permanent. Deleted emails cannot be recovered from within the analyzer. Make sure you want to delete before confirming.</p>
       </div>
 
@@ -1123,7 +1124,7 @@
       <p>Click the puzzle-piece icon in the Chrome/Edge toolbar, find <strong>Email Contact Analyzer</strong>, and click the pin icon to pin it to the toolbar.</p>
 
       <div class="callout callout-tip">
-        <span class="callout-icon">💡</span>
+        <div class="callout-icon-wrap"><i class="ti ti-bulb" aria-hidden="true"></i></div>
         <p>Still stuck? Email us at <a href="mailto:support@staviox.com">support@staviox.com</a> and we'll help you out.</p>
       </div>
     </section>
