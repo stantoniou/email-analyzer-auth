@@ -211,6 +211,23 @@
       .footer-bottom { flex-direction: column; text-align: center; }
     }
   </style>
+
+  <!-- Tally Survey Popup -->
+  <script async src="https://tally.so/widgets/embed.js"></script>
+  <script>
+    window.TallyConfig = {
+      "formId": "7RMMb0",
+      "popup": {
+        "emoji": { "text": "👋", "animation": "wave" },
+        "showOnce": true,
+        "doNotShowAfterSubmit": true,
+        "open": {
+          "trigger": "time",
+          "ms": 15000
+        }
+      }
+    };
+  </script>
 </head>
 <body>
 
