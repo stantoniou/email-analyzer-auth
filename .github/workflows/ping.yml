@@ -1,0 +1,10 @@
+name: Keep Supabase alive
+on:
+  schedule:
+    - cron: '0 12 * * *'
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase via API
+        run: curl https://www.staviox.com/api/ping
