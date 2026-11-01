@@ -40,11 +40,11 @@
     },
     {
       "src": "/api/license",
-	{
-     "src": "/api/event",
-     "dest": "/api/event.js"
-    },
       "dest": "/api/license.js"
+    },
+    {
+      "src": "/api/event",
+      "dest": "/api/event.js"
     },
     {
       "src": "/email-contact-analyzer/upgrade",
