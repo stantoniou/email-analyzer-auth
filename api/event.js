@@ -49,7 +49,8 @@ module.exports = async (req, res) => {
     });
     if (error) {
       console.error('events insert error:', error.message);
-      return res.status(500).json({ error: 'db' });
+      // TEMPORARY DEBUG: remove code/detail once /api/event returns 204
+      return res.status(500).json({ error: 'db', code: error.code || null, detail: String(error.message || '').slice(0, 140) });
     }
     return res.status(204).end();
   } catch (err) {
