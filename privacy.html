@@ -407,11 +407,11 @@
 <div class="badge-bar">
   <span class="badge">
     <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-    No Data Sent to Servers
+    Email Content Stays on Your Device
   </span>
   <span class="badge">
     <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-    No Tracking or Analytics
+    Anonymous Usage Stats Only
   </span>
   <span class="badge">
     <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
@@ -423,7 +423,7 @@
   </span>
   <span class="badge">
     <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-    100% Local Processing
+    Local Email Processing
   </span>
 </div>
 
@@ -439,6 +439,7 @@
       <li><a href="#how-we-use">How We Use Your Data</a></li>
       <li><a href="#data-storage">Data Storage</a></li>
       <li><a href="#data-sharing">Data Sharing &amp; Disclosure</a></li>
+      <li><a href="#licensing-usage">Licensing &amp; Anonymous Usage Statistics</a></li>
       <li><a href="#user-rights">Your Rights &amp; Controls</a></li>
       <li><a href="#security">Security Measures</a></li>
       <li><a href="#third-party">Third-Party Services</a></li>
@@ -462,7 +463,7 @@
       <div class="callout-icon-wrap"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>Privacy-first by design</strong>
-        The Email Contact Analyzer processes all data exclusively on your device. No personal information is collected by Staviox, stored on our servers, or shared with any third party other than Microsoft's own services, which you authorise directly via OAuth consent.
+        Your email content is processed exclusively on your device. Your emails, contacts, subject lines and message previews are never sent to Staviox. The only information Staviox receives is limited to (a) the email address of your Outlook account, sent when you sign in so that your Pro licence status can be checked, and (b) anonymous usage statistics, as described in Section 5A.
       </div>
     </div>
   </section>
@@ -514,7 +515,7 @@
       <div class="callout-icon-wrap"><i class="ti ti-info-circle" aria-hidden="true"></i></div>
       <div class="callout-body">
         <strong>No account creation required</strong>
-        We do not ask you to create an account, provide an email address to us, or submit any personal information to Staviox. The Extension operates solely through your existing Microsoft account credentials managed by Microsoft.
+        We do not ask you to create a Staviox account. The Extension operates through your existing Microsoft account credentials, which are handled by Microsoft. When you sign in, the Extension sends your Outlook email address to Staviox so that your Pro licence status can be checked (see Section 5A).
       </div>
     </div>
   </section>
@@ -568,9 +569,9 @@
     </table>
     <p style="margin-top:16px;">We do <strong>not</strong> use any of the following:</p>
     <ul class="security-list">
-      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Cloud storage or remote databases of any kind</li>
-      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>External backend servers operated by Staviox</li>
-      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Third-party analytics platforms or data brokers</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Remote storage of your emails, contacts, subject lines or message previews</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Any Staviox server that receives your mailbox content (our servers only handle licensing and anonymous usage statistics, see Section 5A)</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Third-party analytics platforms, advertising SDKs or data brokers</li>
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>Advertising networks or tracking cookies</li>
     </ul>
     <div class="callout amber">
@@ -591,11 +592,31 @@
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not sell your data to advertisers or data brokers.</li>
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not share your data with business partners or affiliates.</li>
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not disclose your data for marketing purposes.</li>
-      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not collect or transmit usage analytics about how you use the Extension.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not include any email content, names or email addresses in the anonymous usage statistics described in Section 5A.</li>
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i>We do not use advertising networks or any external tracking services.</li>
     </ul>
-    <p>The only external communication the Extension makes is with <strong>Microsoft's services</strong> (Microsoft Graph API and Microsoft Azure AD) to fetch your own email data using an OAuth token you explicitly grant. This communication flows directly between your browser and Microsoft — Staviox is not an intermediary in this data flow.</p>
+    <p>To read your email data, the Extension communicates directly with <strong>Microsoft's services</strong> (Microsoft Graph API and Microsoft Azure AD) using an OAuth token you explicitly grant. Staviox is not an intermediary in this data flow. The Extension also communicates with Staviox's own servers (staviox.com) for licensing and anonymous usage statistics only, as described in Section 5A. The service providers we use to run these functions are listed in Section 8.</p>
     <p>We may disclose information only if required to do so by applicable law, court order, or governmental authority, and only to the minimum extent legally required.</p>
+  </section>
+
+  <!-- ══ 5A. LICENSING & ANONYMOUS USAGE ══ -->
+  <section id="licensing-usage">
+    <span class="section-label">Section 5A</span>
+    <h2>Licensing &amp; Anonymous Usage Statistics</h2>
+    <p>Apart from the direct connection to Microsoft, the Extension communicates with Staviox's servers (staviox.com) for exactly two purposes. Neither involves your email content.</p>
+
+    <div class="third-party-card">
+      <h3>1. Pro licence check and purchase</h3>
+      <p>When you sign in, the Extension sends the email address of your Outlook account to Staviox to check whether you hold an active Pro licence. If you purchase Pro, your email address, plan type (monthly or annual) and subscription status are stored in our licence database so that Pro can be unlocked for you. Payments are handled by Stripe, which collects and processes your payment details directly; Staviox does not receive or store your card number. We keep licence records for as long as your subscription is active and afterwards for as long as needed to meet tax, accounting and legal obligations.</p>
+    </div>
+
+    <div class="third-party-card" style="margin-top:12px;">
+      <h3>2. Anonymous usage statistics</h3>
+      <p>To understand which features are used and to improve the Extension, it sends anonymous usage events to Staviox, for example "scan completed", "upgrade screen opened" or "search used". Each event contains only: the event name, a randomly generated installation ID, the Extension version, and simple counts or flags (for example, how many contacts were found, or whether the free limit was reached). The installation ID is generated on your device, is not derived from your Microsoft account, and is not linked by us to your name or email address.</p>
+      <p style="margin-top:10px;">These events never include email addresses, contact names, subject lines, message content, or any other data from your mailbox. We keep usage events for up to 12 months. You can opt out at any time by contacting <a href="mailto:support@staviox.com">support@staviox.com</a>.</p>
+    </div>
+
+    <p style="margin-top:16px;">We do not sell this information, use it for advertising, or combine it with data from other sources.</p>
   </section>
 
   <!-- ══ 6. USER RIGHTS ══ -->
@@ -662,7 +683,7 @@
   <section id="third-party">
     <span class="section-label">Section 8</span>
     <h2>Third-Party Services</h2>
-    <p>The Extension interacts exclusively with the following Microsoft services, each of which has its own privacy policy and terms of service:</p>
+    <p>The Extension interacts with the following Microsoft services to read your email data, each of which has its own privacy policy and terms of service:</p>
 
     <div class="third-party-card">
       <h3>Microsoft Graph API</h3>
@@ -674,7 +695,24 @@
       <p>Used solely to facilitate the OAuth 2.0 PKCE authentication flow that grants the Extension permission to access your Outlook data on your behalf. Your credentials are handled entirely by Microsoft.</p>
     </div>
 
-    <p style="margin-top:20px;">The Extension does <strong>not</strong> use any other third-party services, including but not limited to advertising networks, analytics platforms, crash-reporting services, or social media SDKs.</p>
+    <p style="margin-top:20px;">To provide Pro licensing and anonymous usage statistics (Section 5A), Staviox uses the following service providers. None of them receives your email content:</p>
+
+    <div class="third-party-card">
+      <h3>Stripe</h3>
+      <p>Processes Pro subscription payments and issues receipts. Stripe collects your payment details and email address directly and acts as an independent controller for that data under its own privacy policy.</p>
+    </div>
+
+    <div class="third-party-card" style="margin-top:12px;">
+      <h3>Supabase</h3>
+      <p>Hosts the database that stores licence records and anonymous usage events on Staviox's behalf.</p>
+    </div>
+
+    <div class="third-party-card" style="margin-top:12px;">
+      <h3>Vercel</h3>
+      <p>Hosts staviox.com and the licensing and usage-statistics endpoints on Staviox's behalf.</p>
+    </div>
+
+    <p style="margin-top:20px;">The Extension does <strong>not</strong> use advertising networks, third-party analytics platforms, crash-reporting services, or social media SDKs.</p>
     <p>We encourage you to review Microsoft's Privacy Statement at <a href="https://privacy.microsoft.com" target="_blank" rel="noopener noreferrer">privacy.microsoft.com</a> to understand how Microsoft processes your data.</p>
   </section>
 
@@ -747,15 +785,15 @@
     <span class="section-label">Section 11</span>
     <h2>GDPR Compliance</h2>
     <p>Integrationhub Consulting CY LTD is headquartered in Nicosia, Cyprus, a member state of the European Union. We are committed to complying with the <strong>General Data Protection Regulation (EU) 2016/679</strong> ("GDPR").</p>
-    <p>Because all data is processed and stored locally on your device and no personal data is transmitted to or processed by Staviox, the primary data controller relationship under the GDPR for your email data is between you and Microsoft. Nonetheless, the Extension is designed in full accordance with GDPR principles:</p>
+    <p>Your email data is processed and stored locally on your device and is not transmitted to Staviox, so the primary data controller relationship for that data is between you and Microsoft. Staviox acts as the data controller for the limited data it does receive: your Outlook email address and subscription details for Pro licensing, and anonymous usage statistics identified by a random installation ID. The Extension is designed in accordance with GDPR principles:</p>
     <ul class="security-list">
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Data minimisation</strong> — We access only the data required to provide the Extension's features (email metadata and the first 255 characters of the body for search).</li>
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Purpose limitation</strong> — Data accessed is used solely for the purposes described in this policy and no other purpose.</li>
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Storage limitation</strong> — Data persists only as long as the Extension is installed or until you clear it via browser settings.</li>
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Integrity and confidentiality</strong> — Appropriate technical measures (OAuth PKCE, HTTPS, iframe sandboxing, input escaping) are implemented to protect data security.</li>
-      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Right to erasure</strong> — You may erase all Extension data by uninstalling the Extension or clearing browser storage.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Right to erasure</strong> — You may erase all locally stored Extension data by uninstalling the Extension or clearing browser storage. To have your licence record or usage data deleted from our servers, contact <a href="mailto:support@staviox.com">support@staviox.com</a>; some billing records must be retained to meet legal obligations.</li>
       <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Right of access</strong> — All Extension-held data is visible directly within the Extension's interface.</li>
-      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Lawful basis</strong> — Processing is based on your explicit consent, given when you authorise the Extension via Microsoft's OAuth consent screen.</li>
+      <li><i class="ti ti-shield list-icon" aria-hidden="true"></i><strong>Lawful basis</strong> — Access to your mailbox is based on your explicit consent, given when you authorise the Extension via Microsoft's OAuth consent screen. Licensing is based on performance of the contract with you (Pro subscription). Anonymous usage statistics are based on our legitimate interest in maintaining and improving the Extension.</li>
     </ul>
     <p>For any GDPR-related enquiries, please contact us at <a href="mailto:support@staviox.com">support@staviox.com</a>.</p>
   </section>
@@ -764,7 +802,7 @@
   <section id="data-retention">
     <span class="section-label">Section 12</span>
     <h2>Data Retention</h2>
-    <p>Because the Extension operates entirely on your device, data retention is fully under your control. There is no server-side retention of any kind.</p>
+    <p>Your email data is processed entirely on your device, so its retention is under your control. Staviox's servers retain only the limited licensing and usage data described in Section 5A.</p>
 
     <div class="retention-grid">
       <div class="retention-card">
@@ -784,16 +822,16 @@
       </div>
       <div class="retention-card">
         <div class="icon-wrap"><i class="ti ti-cloud-off" aria-hidden="true"></i></div>
-        <h3>No Server Retention</h3>
-        <p>Staviox holds no copies of your data. There is no server-side database, backup, or log that retains your information.</p>
+        <h3>Limited Server Retention</h3>
+        <p>Staviox holds no copies of your emails or contacts. Our servers store only licence records (while your subscription is active and as required by law afterwards) and anonymous usage events (up to 12 months).</p>
       </div>
     </div>
 
     <div class="callout green">
       <div class="callout-icon-wrap"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
       <div class="callout-body">
-        <strong>Zero server-side data retention</strong>
-        We do not retain any user data on our infrastructure — because we never receive it in the first place. The only place your data ever exists is within your own browser.
+        <strong>No mailbox data on our servers</strong>
+        We never receive your emails, contacts, subject lines or message previews. That data exists only within your own browser.
       </div>
     </div>
   </section>
@@ -826,6 +864,7 @@
     <p>We may update this Privacy Policy from time to time to reflect changes in the Extension's features, applicable law, or our data practices. When we make significant changes, we will notify users through the Extension's update release notes published on the Chrome Web Store or relevant browser extension marketplace.</p>
     <p>The <strong>Last Updated</strong> date at the bottom of this page reflects the date of the most recent revision. We encourage you to review this policy periodically.</p>
     <p>Your continued use of the Extension following the posting of changes constitutes your acceptance of the updated Privacy Policy.</p>
+    <p><strong>Last updated:</strong> 1 November 2026</p>
   </section>
 
   <!-- ══ 15. CONTACT ══ -->
